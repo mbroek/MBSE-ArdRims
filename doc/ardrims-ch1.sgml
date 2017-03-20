@@ -1,0 +1,49 @@
+<!-- 
+  vim:syntax=docbksgml
+-->
+
+<chapter id="introductie">
+<title>Introductie.</title>
+<para>Software voor een RIMS brouwsysteem, een brouwsysteem waarbij het
+maischen en koken in dezelfde pan gebeurt. De software is geschreven voor
+een Arduino NANO, maar werkt ook op onder andere een Arduino UNO.
+Tijdens het maischen zit de mout
+in een binnenpan met filterbodem. Een pompt haalt het gefilterde wort onder
+de binnenpan weg en pompt het terug boveop de mout in de binnenpan. Doordat
+het wort continue wordt rondgepompt is het al helder voor je gaat filteren.
+Het filteren gebeurt door de binnenpan op te takelen zodat die net boven het
+wort in de pan er onder komt. Op dat moment kun je de software al op koken
+zetten en tegelijk gaan spoelen.</para>
+
+<para> De software regelt alle temperatuur stappen tijdens het maischen. Om
+de temperatuur goed te regelen wordt gebruik gemaakt van PID software. Deze
+PID software zorgt er voor dat het opwarmen zo geregeld wordt dat de temperatuur
+minimaal doorschiet. Het vermogen van de verwarming wordt hiervoor geregeld 
+door deze steeds in en uit te schakelen in het ritme van enkele seconden. 
+Dit is een vorm van PWM regelen welke met eenvoudige middelen te maken is.
+</para>
+
+<para>De software is gebaseerd op de Open ArdBir software, een project
+wat niet meer bestaat. Deze software was heel rommelig geschreven en had
+een aantal mankementen. Er was geen mogenlijkheid om uit te breiden.
+Daarom had ik besloten de software opnieuw te schrijven. In eerste instantie 
+is geprobeerd zoveel mogenlijk de data opslag gelijk te houden met die van
+de oorspronkelijke software zodat je makkelijk kon overstappen. In de loop
+van de tijd is deze compatibiliteit steeds minder geworden.</para>
+
+<para>Als hardware kunnen de oorspronkelijk borden gebruikt worden, maar
+ook borden die gemaakt zijn door Jelle Klinge voor het forum 
+<ulink url="http://www.hobbybrouwen.nl/forum/index.php/topic,30878.0.html">Hobbybrouwen.nl</ulink>.
+In de source is in te stellen welke hardware je gebruikt.</para>
+
+<sect1 id="warning">
+<title>Veiligheid.</title>
+<para>
+Ook al brouw je met deze software automatisch, blijf toch bij het systeem om
+in te kunnen grijpen als er iets mis gaat. Er is geen beveiliging in de
+software om lekkage en fouten in de brouw installatie te detecteren.
+</para>
+</sect1>
+
+</chapter>
+

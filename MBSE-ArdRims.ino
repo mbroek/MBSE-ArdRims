@@ -124,7 +124,12 @@ const byte SensorHLTPin = 11;
 #define ButtonDownPin   A2
 #define ButtonStartPin  A0
 #define ButtonEnterPin  A1
-#elif (PCBType == 3 || PCBType == 4 || PCBType == 6)
+#elif (PCBType == 3)
+#define ButtonUpPin     A1
+#define ButtonDownPin   A0
+#define ButtonStartPin  A3
+#define ButtonEnterPin  A2
+#elif (PCBType == 4 || PCBType == 6)
 #define ButtonUpPin     A2
 #define ButtonDownPin   A3
 #define ButtonStartPin  A0
@@ -1289,7 +1294,7 @@ startover:
           */
           if (TimeLeft == 0) {
             NewState = CurrentState + 1;
-            if ((CurrentState == StageMashIn) && (! er_byte(EM_SkipAdd))) {
+            if ((CurrentState == StageMashIn) && (er_byte(EM_WaitAdd))) {
               pump_off();
 #if USE_HLT == true
               HLT_off();
@@ -1298,11 +1303,11 @@ startover:
                 NewState = StageAborted;
               }
             }
-            if ((CurrentState == LastMashStep) && (! er_byte(EM_SkipIodine))) {
+            if ((CurrentState == LastMashStep) && (er_byte(EM_WaitIodine))) {
               (_EM_PumpOnMash) ? pump_on() : pump_off();
               IodineTest();
             }
-            if ((CurrentState == StageMashOut) && (! er_byte(EM_SkipRemove))) {
+            if ((CurrentState == StageMashOut) && (er_byte(EM_WaitRemove))) {
               pump_off();
 #if USE_HLT == true
               HLT_off();
@@ -1690,6 +1695,8 @@ void AllThreads() {
 void setup() {
 #if (DebugPID == true || DebugProcess == true || DebugButton == true || DebugReadWrite == true || DebugBuzzer == true)
   Serial.begin(115200);
+#else
+  Serial.begin(9600);
 #endif
 
   pinMode (HeatControlPin, OUTPUT);
@@ -1769,6 +1776,16 @@ void setup() {
     ew_uint(EM_PID_Kp, uint16_t(150 * PID_Kp_div));
     ew_uint(EM_PID_Ki, uint16_t(1.5 * PID_Ki_div));
     ew_uint(EM_PID_Kd, uint16_t(15000 * PID_Kd_div));
+  }
+  if ((er_byte(EM_Marker1) == 0xAA) && (er_byte(EM_Marker2) == 0x55) && (er_byte(EM_NewVersion) == 2)) {
+    if (er_byte(EM_NewRevision) == 0) {
+      Serial.println("EEPROM upgrade v2 rev1");
+      ew_byte(EM_NewRevision, 1);
+      // flip values.
+      ew_byte(EM_WaitAdd, er_byte(EM_WaitAdd) ? 0:1);
+      ew_byte(EM_WaitRemove, er_byte(EM_WaitRemove) ? 0:1);
+      ew_byte(EM_WaitIodine, er_byte(EM_WaitIodine) ? 0:1);
+    }
   }
 }
 

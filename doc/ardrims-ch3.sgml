@@ -1,0 +1,791 @@
+<!-- 
+       vim:syntax=docbksgml
+-->
+
+<chapter id="setup">
+<title>Het Setup hoofdmenu.</title>
+
+<para>
+Zodra je het setup menu start kom je meteen bij de instellingen voor de PID.
+</para>
+
+<sect1 id="setup-pid">
+<title>PID instellingen.</title>
+<figure><title>PID instellingen.</title>
+<mediaobject id="pid">
+<imageobject>
+<imagedata fileref="pid.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<listitem><para>De toets <command>Neer</command> brengt je naar het Unit instellingen menu.</para></listitem>
+<listitem><para>De toets <command>Terug</command> brengt je terug naar het hoofdmenu.</para></listitem>
+<listitem><para>De toets <command>Ok</command> brengt je naar de eerste PID instelling: PID kP.</para></listitem>
+</itemizedlist>
+
+<sect2 id="setup-pid-p">
+<title>PID kP</title>
+<figure><title>PID P parameter.</title>
+<mediaobject id="pid-kp">
+<imageobject>
+<imagedata fileref="pid-kp.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Dit is de proportionele waarde voor de PID. De waarde is in te stellen
+tussen 0 en 2048 in stappen van 0,03125.
+De <command>Op</command> en <command>Neer</command> toetsen hebben drie
+stap snelheden. Hoe langer je de toets vasthoud, hoe groter de stappen worden.
+De standaard waarde is 150,000. Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
+verschijnt vanzelf het volgende item, PID kI.
+</para>
+</sect2>
+
+<sect2 id="setup-pid-i">
+<title>PID kI</title>
+<figure><title>PID I parameter.</title>
+<mediaobject id="pid-ki">
+<imageobject>
+<imagedata fileref="pid-ki.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Dit is de integrale waarde van de PID. De waarde is in te stellen tussen
+0 en 128 in stappen van 0,002. De <command>Op</command> en <command>Neer</command> toetsen hebben drie
+stap snelheden. Hoe langer je de toets vasthoud, hoe groter de stappen worden.
+De standaard waarde is 1,500. Dit is 1/100 van de PID kP waarde en is een goede startwaarde.
+Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
+verschijnt vanzelf het volgende item, PID kD.
+</para>
+</sect2>
+
+<sect2 id="setup-pid-d">
+<title>PID kD</title>
+<figure><title>PID D parameter.</title>
+<mediaobject id="pid-kd">
+<imageobject>
+<imagedata fileref="pid-kd.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Dit is de deriviate waarde van de PID. De waarde is in te stellen tussen
+0 en 32768 in stappen van 0,5. De <command>Op</command> en <command>Neer</command> toetsen hebben drie
+stap snelheden. Hoe langer je de toets vasthoud, hoe groter de stappen worden.
+De standaard waarde is 15000,000. Dit is 100 maal de PID kP waarde en is een goede startwaarde.
+Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
+verschijnt vanzelf het volgende item, SampleTime.
+</para>
+</sect2>
+
+<sect2 id="setup-pid-sampletime">
+<title>SampleTime</title>
+<figure><title>SampleTime.</title>
+<mediaobject id="pid-sampletime">
+<imageobject>
+<imagedata fileref="pid-sampletime.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Dit is de tijd in milliseconden dat de PID zijn berekening uitvoert. Deze
+staat standaard op 5000 mSec, dus 5 seconden. De waarde is in te stellen tussen 1 en
+20 seconden. Dit is tevens de snelheid waarmee de ketel geschakeld wordt. Met een instelling
+van 5000 en 40% berekend vermogen betekent dit dat de ketel 2000 mSec aan en
+3000 mSec uit is. Door de massa van het brouwwater en de elementen geeft dit
+een rustige regeling. Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
+verschijnt vanzelf het volgende item, Temp Offset.
+</para>
+</sect2>
+
+<sect2 id="setup-pid-offset">
+<title>Temp. Offset</title>
+<figure><title>Temp Offset.</title>
+<mediaobject id="pid-offset">
+<imageobject>
+<imagedata fileref="pid-offset.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Dit is de temperatuur offset die opgeteld of afgetrokken wordt van de gemeten
+waarde van de temperatuur sensor voor de maisch ketel. Hiermee kun je een correctie
+instellen als je sensor afwijkt (kan haast niet met een DS18B20) doordat je op
+een plaats meet die niet de juiste temperatuur van de mout aangeeft. Normaal is deze instelling
+niet nodig en kun je deze het beste op nul laten staan. Het bereik is -5&deg;C tot +5&deg;C in stappen
+van 0,1&deg;C. Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
+verschijnt vanzelf het volgende item, Heat in Boil.
+</para>
+</sect2>
+
+<sect2 id="setup-pid-heatboil">
+<title>Heat in Boil</title>
+<figure><title>Heat in Boil.</title>
+<mediaobject id="pid-heatinboil">
+<imageobject>
+<imagedata fileref="pid-heatinboil.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Deze instelling is het vermogen wat de ketel krijgt zodra het wort kookt. Hierdoor
+kun je wat zuiniger en rustiger koken indien je ketel dat toelaat.
+Tijdens het koken kun je dit nog bijstellen.
+Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
+verschijnt vanzelf het volgende item, HLT temp.
+</para>
+</sect2>
+
+<sect2 id="setup-pid-hlttemp">
+<title>HLT temperatuur</title>
+<figure><title>HLT temperatuur.</title>
+<mediaobject id="pid-hlttemp">
+<imageobject>
+<imagedata fileref="pid-hlttemp.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para><emphasis>Dit menu item verschijnt alleen als de source gecompileerd is met USE_HLT true.</emphasis>
+Dit is de standaard waarde voor de ketel met spoelwater (Hot Liquer Tank). In te stellen
+tussen 0&deg;C en 95&deg;C.
+Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
+verschijnt vanzelf het PID menu.
+</para>
+</sect2>
+</sect1>
+
+
+<sect1 id="setup-unit">
+<title>Unit instellingen.</title>
+<figure><title>Unit Instellingen.</title>
+<mediaobject id="unit">
+<imageobject>
+<imagedata fileref="unit.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<listitem><para>De toets <command>Op</command> brengt je naar het PID instellingen menu.</para></listitem>
+<listitem><para>De toets <command>Neer</command> brengt je naar het Maisch Programma menu.</para></listitem>
+<listitem><para>De toets <command>Terug</command> brengt je terug naar het hoofdmenu.</para></listitem>
+<listitem><para>De toets <command>Ok</command> brengt je naar de eerste Unit instelling: Kook Temperatuur.</para></listitem>
+</itemizedlist>
+
+<sect2 id="setup-unit-boiltemp">
+<title>Kook temperatuur</title>
+<figure><title>Kook Temperatuur.</title>
+<mediaobject id="unit-boiltemp">
+<imageobject>
+<imagedata fileref="unit-boiltemp.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Zodra deze temperatuur is bereikt start de timer voor het koken. Deze dus
+niet op een waarde zetten die niet te bereiken is. 99&deg;C is mooi in ons vlakke land,
+in de bergen heb je een lagere waarde nodig. Onder deze temeratuur krijgt de ketel 100%
+vermogen, zodra de ingestelde temperatuur is bereikt of hoger is dan kan dit vermogen
+lager zijn. Standaard is dat de waarde die onder <command>PID - Heat in Boil staat</command>.
+Tijdens het brouwen kun je deze waardes ook aanpassen.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-pumpcyclus">
+<title>Pomp cyclus</title>
+<figure><title>Pomp Cyclus.</title>
+<mediaobject id="unit-pumpcyclus">
+<imageobject>
+<imagedata fileref="unit-pumpcyclus.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Dit is de tijd in minuten dat de pomp aan staat tijdens het maischen.
+De waarde kan ingesteld worden tussen 5 en 15 minuten. Deze tijd werkt
+samen met de volgende <command>Pomp Rust</command> instelling.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-pumprest">
+<title>Pomp rust</title>
+<figure><title>Pomp Rust.</title>
+<mediaobject id="unit-pumprest">
+<imageobject>
+<imagedata fileref="unit-pumprest.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Dit is de tijd in minuten dat de pomp niet draait. De waarde kan worden
+ingesteld tussen 0 en 5 minuten. Als je deze op 0 zet dan zal de pomp altijd
+draaien. Deze instelling werkt samen met de vorige <command>Pomp Cyclus</command>
+instelling.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-pumppwm">
+<title>Pomp langzaam</title>
+<para><emphasis>Dit menu item verschijnt alleen als de source gecompileerd is met USE_PumpPWM true.</emphasis>
+Dit is het percentage vermogen wat de pomp krijgt tijdens de pomp rust. Dit kan alleen gebruikt
+worden indien de pomp electronisch gestuurd wordt. In te stellen tussen 10 en 100%.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-pumppremash">
+<title>Pomp Inmaischen</title>
+<figure><title>Pomp Inmaischen.</title>
+<mediaobject id="unit-pump-mashin">
+<imageobject>
+<imagedata fileref="unit-pumpmashin.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Wordt de pomp gebruikt tijdens het inmaischen of niet.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-pumponmash">
+<title>Pomp Maischen</title>
+<figure><title>Pomp Maischen.</title>
+<mediaobject id="unit-pumponmash">
+<imageobject>
+<imagedata fileref="unit-pumponmash.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Wordt de pomp gebruikt tijdens het maischen of niet.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-pumpmashout">
+<title>Pomp Uitmaischen.</title>
+<figure><title>Pomp Uitmaischen.</title>
+<mediaobject id="unit-pumpmashout">
+<imageobject>
+<imagedata fileref="unit-pumpmashout.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Wordt de pomp gebruikt tijdens het uitmaischen of niet.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-pumponboil">
+<title>Pomp Koken</title>
+<figure><title>Pomp Koken.</title>
+<mediaobject id="unit-pumponboil">
+<imageobject>
+<imagedata fileref="unit-pumponboil.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Wordt de pomp gebruikt tijdens het koken of niet.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-pumpstop">
+<title>Pomp Stop</title>
+<figure><title>Pomp Stop.</title>
+<mediaobject id="unit-pumpstop">
+<imageobject>
+<imagedata fileref="unit-pumpstop.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Dit is de temperatuur waar boven de pomp niet meer aan gaat.
+Niet alle pompen zijn geschikt om bij hoge temperaturen te pompen en
+kunnen beschadigen door luchtbellen die ontstaan. Deze instelling werkt
+bij alle brouwstappen waarbij de temperatuur boven deze waarde komt.
+In te stellen tussen 80&deg;C en 105&deg;C.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-pidpipe">
+<title>PID Pijp</title>
+<figure><title>PID Pijp.</title>
+<mediaobject id="unit-pidpipe">
+<imageobject>
+<imagedata fileref="unit-pidpipe.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Een beetje vage omschrijving, maar dit geeft aan of de PID door moet
+blijven werken tijdens het optakelen van de binnenpan ook wel moutpijp genoemd.
+Het beste kan deze aan staan zodat het wort niet kan afkoelen tijdens het spoelen.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-skipadd">
+<title>Skip Toevoegen</title>
+<figure><title>Skip Toevoegen.</title>
+<mediaobject id="unit-skipadd">
+<imageobject>
+<imagedata fileref="unit-skipadd.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Overslaan van de vraag om de mout te storten. Zonder deze vraag
+zal het brouwen beginnen met maischen ook al is er geen mout gestort.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-skipremove">
+<title>Skip Verwijderen</title>
+<figure><title>Skip Verwijderen.</title>
+<mediaobject id="unit-skipremove">
+<imageobject>
+<imagedata fileref="unit-skipremove.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Overslaan van de vraag om de mout te verwijderen aan het eind
+van het maischen. Zonder deze vraag zal worden begonnen met het koken
+ook al is de mout nog aanwezig.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-skipiodone">
+<title>Skip Jodiumtest</title>
+<figure><title>Skip Jodiumtest.</title>
+<mediaobject id="unit-skipiodine">
+<imageobject>
+<imagedata fileref="unit-skipiodine.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Overslaan van de vraag om de jodium test te doen. Deze vraag wordt
+gesteld na de laatste maisch stap en voor het uitmaischen.
+</para>
+</sect2>
+
+<sect2 id="setup-unit-iodinetime">
+<title>Jodium Tijd</title>
+<figure><title>Jodium Tijd.</title>
+<mediaobject id="unit-iodinetime">
+<imageobject>
+<imagedata fileref="unit-iodinetime.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>De maximale tijd dat gewacht wordt op de jodium test indien deze niet overgeslagen
+wordt. Als de tijd verstreken is gaat het brouwen weer door, of als de gebruiker
+het zelf aangeeft gaat het brouwen direct door. In te stellen tussen 0 en 90 minuten.
+</para>
+</sect2>
+</sect1>
+
+
+
+<sect1 id="setup-mash">
+<title>Maisch Programma.</title>
+<itemizedlist>
+<listitem><para>De toets <command>Op</command> brengt je naar het Unit instellingen menu.</para></listitem>
+<listitem><para>De toets <command>Neer</command> brengt je naar het Kook Programma menu.</para></listitem>
+<listitem><para>De toets <command>Terug</command> brengt je terug naar het hoofdmenu.</para></listitem>
+<listitem><para>De toets <command>Ok</command> brengt je naar de eerste Maisch Programma stap: Maisch In.</para></listitem>
+</itemizedlist>
+<figure><title>Maisch instellingen.</title>
+<mediaobject id="mash">
+<imageobject>
+<imagedata fileref="mash.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+
+<sect2 id="setup-mashin">
+<title>Maisch in</title>
+<figure><title>Maisch in.</title>
+<mediaobject id="mash-mashin">
+<imageobject>
+<imagedata fileref="mash-mashin.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Hier stel je de inmaisch temperatuur in. Deze is altijd ietsje hoger dan
+de temperatuur van de eerste maisch stap. De juiste temperatuur kan berekend
+worden door de meeste brouw software. Meestal is dit 1 tot 2 graden warmer dan de
+temperatuur van de eerste maisch stap.
+</para>
+</sect2>
+
+<sect2 id="setup-mash-1">
+<title>Maisch stap 1</title>
+<figure><title>Maisch stap 1.</title>
+<mediaobject id="mash-step1-1">
+<imageobject>
+<imagedata fileref="mash-step1-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Hier stel je de temperatuur en tijdsduur in van de eerste maisch stap. Deze stap
+is verplicht. De temperatuur is in te stellen tussen de maisch in temperatuur min 5&deg;C
+en 75&deg;C. Na het drukken van <command>Ok</command> verschijnt het volgende scherm.
+</para>
+<figure><title>Maisch stap 1.</title>
+<mediaobject id="mash-step1-2">
+<imageobject>
+<imagedata fileref="mash-step1-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>De tijd is in te stellen tussen 1 en 140 minuten.</para>
+</sect2>
+
+<sect2 id="setup-mash-2">
+<title>Maisch stap 2, 3, 4, 5 en 6.</title>
+<figure><title>Maisch stap 2.</title>
+<mediaobject id="mash-step2-1">
+<imageobject>
+<imagedata fileref="mash-step2-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Al deze stappen zijn optioneel. Eerst geef je aan met de derde toets
+of deze stap gebruikt zal gaan worden. Rechts op de derde regel staat Ja of Nee.
+Indien dat Ja is en op <command>Ok</command> gedrukt wordt verschijnt het scherm voor de temperatuur.
+Indien het Nee is verschijnt de volgende stap.
+</para>
+<figure><title>Maisch stap 2.</title>
+<mediaobject id="mash-step2-2">
+<imageobject>
+<imagedata fileref="mash-step2-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>
+De temperatuur voor deze stap is in te stellen tussen de temperatuur van de voorgaande
+stap plus 1&deg;C en 75&deg;C. Je wordt dus gedwongen om steeds een hogere temperatuur
+te kiezen. Druk op <command>Ok</command> om naar het volgende scherm te gaan.
+</para>
+<figure><title>Maisch stap 2.</title>
+<mediaobject id="mash-step2-3">
+<imageobject>
+<imagedata fileref="mash-step2-3.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>De tijd is in te stellen tussen 1 en 140 minuten. Na het drukken van
+<command>Ok</command> verschijnt de volgende maisch stap.
+</para>
+</sect2>
+
+<sect2 id="setup-mashout">
+<title>Maisch uit</title>
+<figure><title>Maisch Uit.</title>
+<mediaobject id="mash-mashout-1">
+<imageobject>
+<imagedata fileref="mash-mashout-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Dit is een verplichte stap. Wil je niet uitmaischen stel deze stap dan in
+op dezelfde temperatuur als de vorige stap met een tijdsduur van 1 minuut. Deze
+stap is in te stellen vanaf de voorgaande stap temperatuur tot 85&deg;C.
+</para>
+<figure><title>Maisch Uit.</title>
+<mediaobject id="mash-mashout-2">
+<imageobject>
+<imagedata fileref="mash-mashout-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>De tijd is in te stellen tussen 1 en 140 minuten. Na het drukken van
+<command>Ok</command> verschijnt het Maisch menu weer.
+</para>
+</sect2>
+</sect1>
+
+
+<sect1 id="setup-boil">
+<title>Kook Programma.</title>
+<figure><title>Koken.</title>
+<mediaobject id="boil">
+<imageobject>
+<imagedata fileref="boil.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<listitem><para>De toets <command>Op</command> brengt je naar het Maisch Programma menu.</para></listitem>
+<listitem><para>De toets <command>Neer</command> brengt je naar het Recepten Beheer menu.</para></listitem>
+<listitem><para>De toets <command>Terug</command> brengt je terug naar het hoofdmenu.</para></listitem>
+<listitem><para>De toets <command>Ok</command> brengt je naar de eerste Kook Programma stap: Koken.</para></listitem>
+</itemizedlist>
+
+<sect2 id="setup-boiltime">
+<title>Koken</title>
+<figure><title>Koken.</title>
+<mediaobject id="boil-boiltime">
+<imageobject>
+<imagedata fileref="boil-boiltime.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Hier stel je de kooktjd in tussen 10 en 240 minuten.
+</para>
+</sect2>
+
+<sect2 id="setup-nrofhops">
+<title>Aantal Hopgiften</title>
+<figure><title>Aantal hopgiften.</title>
+<mediaobject id="boil-nrofhops">
+<imageobject>
+<imagedata fileref="boil-nrofhops.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Hier stel je het aantal hopgiften in tijdens de kook periode. Tel ook andere
+giften hierbij zoals kruiden en gist voeding. Dit is niet noodzakelijk maar dit geeft
+een aantal waarschuwing tijdens het koken dat je "iets" moet toevoegen aan de kook.
+In te stellen tussen 0 en 10.
+</para>
+<figure><title>Hop 1.</title>
+<mediaobject id="boil-hop1">
+<imageobject>
+<imagedata fileref="boil-hop1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>
+De tijd van een hopgift. Het aantal schermen wat je moet invullen is afhankelijk van het aantal
+gekozen hopgiften. De tijd die je invult is de tijd voor het einde van de kook. Vul je 45 in
+dan zul je 45 minuten voor het einde van de kook een waarschuwing krijgen. De tijd die je kunt
+instellen ligt tussen die van de voorgaande hopgift (of totale kooktijd) en 0 minuten. De tijden voor
+alle hopgiften loopt af.
+</para>
+</sect2>
+
+<sect2 id="setup-boilcooling">
+<title>Koel Temp.</title>
+<figure><title>Koel Temp.</title>
+<mediaobject id="boil-cooltemp">
+<imageobject>
+<imagedata fileref="boil-cooltemp.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Dit is de uiteindelijk koel temperatuur voor gebruikers van inwendige koelers in de kook ketel. Hiermee
+wordt het verloop van het koelen gemeten en kan het koelen onderbroken worden voor een whirlpool.
+In te stellen tussen 10&deg;C en 30&deg;C.
+</para>
+<para>Gebruikers van uitwendige koelers zoals platenkoelers hebben hier last van omdat het
+brouw programma nooit zal stoppen. Dit is dus een bug. Door tijdens het brouwen na de kook
+de vraag <command>Start Koelen</command> met Nee te beantwoorden wordt het brouw programma
+geforceerd gestopt.
+</para>
+</sect2>
+
+<sect2 id="setup-boilwhirlpool">
+<title>Whirlpool</title>
+<para>Er zijn 4 mogelijkheden voor een whirlpool. De drie warme whirlpool instellingen zijn
+zo gemaakt dat de ketel bijverwarmd kan worden als de temperatuur te laag dreigt te worden.
+Hiervoor wordt de PID regeling gebruikt. Zie de volgende tabel:
+<table>
+<title>Whirlpool overzicht</title>
+ <tgroup align='left' cols="3">
+  <colspec colname='c1'>
+  <colspec colname='c2'>
+  <colspec colname='c3'>
+  <thead>
+   <row>
+    <entry>Naam</entry>
+    <entry>Temperatuur</entry>
+    <entry>PID setpoint</entry>
+   </row>
+  </thead>
+  <tbody>
+   <row>
+    <entry>Whirlpool 93+</entry>
+    <entry>91&deg;C .. 100&deg;C</entry>
+    <entry>93&deg;C</entry>
+   </row>
+   <row>
+    <entry>Whirlpool 71..77</entry>
+    <entry>71&deg;C .. 77&deg;C</entry>
+    <entry>74&deg;C</entry>
+   </row>
+   <row>
+    <entry>Whirlpool 60..66</entry>
+    <entry>60&deg;C .. 66&deg;C</entry>
+    <entry>63&deg;C</entry>
+   </row>
+   <row>
+    <entry>Whirlpool Koud</entry>
+    <entry>10&deg;C .. 30&deg;C</entry>
+    <entry></entry>
+   </row>
+  </tbody>
+ </tgroup>
+</table>
+</para>
+<figure><title>Whirlpool schermen.</title>
+<mediaobject id="boil-whirl9">
+<imageobject>
+<imagedata fileref="boil-whirl9.png" scale="70" format="png">
+</imageobject>
+</mediaobject>
+<mediaobject id="boil-whirl7">
+<imageobject>
+<imagedata fileref="boil-whirl7.png" scale="70" format="png">
+</imageobject>
+</mediaobject>
+<mediaobject id="boil-whirl6">
+<imageobject>
+<imagedata fileref="boil-whirl6.png" scale="70" format="png">
+</imageobject>
+</mediaobject>
+<mediaobject id="boil-whirl2">
+<imageobject>
+<imagedata fileref="boil-whirl2.png" scale="70" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+</sect2>
+</sect1>
+
+
+<sect1 id="setup-recipe">
+<title>Recepten beheer.</title>
+<figure><title>Recepten.</title>
+<mediaobject id="recipe">
+<imageobject>
+<imagedata fileref="recipe.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<listitem><para>De toets <command>Op</command> brengt je naar het Kook Programma menu.</para></listitem>
+<listitem><para>De toets <command>Terug</command> brengt je terug naar het hoofdmenu.</para></listitem>
+<listitem><para>De toets <command>Ok</command> brengt je naar de eerste Recepten Beheer menu: Recept Laden.</para></listitem>
+</itemizedlist>
+<para>
+In het recepten beheer kunnen 10 recepten worden opgeslagen. Dit zijn alle gegevens die in de menus
+<command>Maisch Programma</command> en <command>Kook Programma</command> zijn ingesteld.
+</para>
+
+
+<sect2 id="setup-recipeload">
+<title>Recept laden</title>
+<figure><title>Recept laden.</title>
+<mediaobject id="recipe-load-1">
+<imageobject>
+<imagedata fileref="recipe-load-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Het laden van een opgeslagen recept. Als je op <command>Ok</command>
+drukt kom je in het volgende menu om een opgeslagen recept te selecteren.
+</para>
+<figure><title>Recept laden.</title>
+<mediaobject id="recipe-load-2">
+<imageobject>
+<imagedata fileref="recipe-load-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>
+Met de <command>Op</command> en <command>Neer</command> toetsen kun je kiezen
+uit een van de opgeslagen recepten. Druk op <command>Ok</command> om het
+recept te laden, of druk op <command>Terug</command> om terug te keren naar het menu.
+</para>
+<figure><title>Recept laden.</title>
+<mediaobject id="recipe-load-3">
+<imageobject>
+<imagedata fileref="recipe-load-3.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Het recept wordt geladen.</para>
+</sect2>
+
+<sect2 id="setup-recipesave">
+<title>Recept opslaan</title>
+<figure><title>Recept opslaan.</title>
+<mediaobject id="recipe-save-1">
+<imageobject>
+<imagedata fileref="recipe-save-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Als je iets in een recept in <command>Maisch Programma</command> of <command>Kook Programma</command>
+verandert hebt aan een recept kun je die wijzigingen weer opslaan.
+</para>
+<figure><title>Recept opslaan.</title>
+<mediaobject id="recipe-save-2">
+<imageobject>
+<imagedata fileref="recipe-save-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Standaard staat het recept wat het laatst is gebruikt voor geselecteerd. Maar met de
+<command>Op</command> en <command>Neer</command> toetsen kun je een ander recept kiezen
+om te overschrijven. Zodra je op <command>Ok</command> drukt wordt het bestaande recept
+overschreven.
+</para>
+<figure><title>Recept opslaan.</title>
+<mediaobject id="recipe-save-3">
+<imageobject>
+<imagedata fileref="recipe-save-3.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Nog even voor de zekerheid, opslaan?
+</para>
+</sect2>
+
+<sect2 id="setup-recipesaveas">
+<title>Recept opslaan als</title>
+<figure><title>Recept opslaan als.</title>
+<mediaobject id="recipe-saveas-1">
+<imageobject>
+<imagedata fileref="recipe-saveas-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Voor het opslaan van een nieuw recept. Dit werkt alleen als er minder
+dan 10 recepten in het geheugen staan. Eventueel ruimte maken met het menu
+<command>Recept Wissen</command>.
+</para>
+<para>TODO: nog verder beschrijven maar het komt er op neer dat je met de pijltjes toetsen
+de naam moet maken, letter voor letter (of cijfer) en dan opslaan. Het recept kan pas
+worden opgeslagen als aan het einde van de naam voldoende spaties zijn toegevoegd of
+dat de naam zo lang is dat de naambuffer vol is.
+</para>
+</sect2>
+
+<sect2 id="setup-reciperemove">
+<title>Recept wissen</title>
+<figure><title>Recept wissen.</title>
+<mediaobject id="recipe-erase">
+<imageobject>
+<imagedata fileref="recipe-erase.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Om ruimte te maken voor een nieuw recept is het soms nodig een oud recept te
+verwijderen. Kies het recept om te verwijderen en druk op <command>Ok</command>.
+Daarna wordt nog even gevraagd of je dat recept echt wilt verwijderen.
+</para>
+</sect2>
+
+<sect2 id="setup-recipeinit">
+<title>Recept init</title>
+<figure><title>Recept init.</title>
+<mediaobject id="recipe-init-1">
+<imageobject>
+<imagedata fileref="recipe-init-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Deze optie wist in een keer alle recepten en zet het recepten beheer terug in
+de oorspronkelijke fabrieks instelling.
+</para>
+<figure><title>Recept init.</title>
+<mediaobject id="recipe-init-2">
+<imageobject>
+<imagedata fileref="recipe-init-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Voor de zekerheid, <command>Ja</command> wist al je recepten.
+</para>
+</sect2>
+</sect1>
+
+
+</chapter>
+

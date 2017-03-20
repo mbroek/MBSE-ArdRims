@@ -1,0 +1,38 @@
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook V4.4//EN" [
+<!ENTITY chapter1 SYSTEM "ardrims-ch1.sgml">
+<!ENTITY chapter2 SYSTEM "ardrims-ch2.sgml">
+<!ENTITY chapter3 SYSTEM "ardrims-ch3.sgml">
+<!ENTITY chapter4 SYSTEM "ardrims-ch4.sgml">
+<!ENTITY chapter5 SYSTEM "ardrims-ch5.sgml">
+]>
+
+<book lang="nl">
+<bookinfo>
+    <title>MBSE ArdRims handleiding.</title>
+    <authorgroup>
+	<author>
+	    <firstname>Michiel</firstname>
+	    <surname>Broek</surname>
+	</author>
+    </authorgroup>
+
+    <copyright>
+	<year>2016-2017</year>
+	<holder role='mailto:mbse@mbse.eu'>M. Broek</holder>
+    </copyright>
+
+    <releaseinfo>Version 0.2.0</releaseinfo>
+    <abstract>
+	<para>
+	    Documentatie voor de MBSE ArdRims brouw controller voor de BrewBoard hardware.
+	</para>
+    </abstract>
+</bookinfo>
+
+&chapter1;
+&chapter2;
+&chapter3;
+&chapter4;
+&chapter5;
+
+</book>

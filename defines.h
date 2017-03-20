@@ -1,7 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define  VERSION        "0.2.0"
+#define  VERSION        "0.2.1"
 
 /*
    EEPROM MAP
@@ -40,9 +40,9 @@
 #define  EM_PumpMaxTemp      20   // Pump max temp °C
 //                           21   // Pump max temp °F (Obsolete)
 #define  EM_PIDPipe          22   // PID Pipe
-#define  EM_SkipAdd          23   // Skip Add Malt
-#define  EM_SkipRemove       24   // Skip Remove Malt
-#define  EM_SkipIodine       25   // Skip Iodine test
+#define  EM_WaitAdd          23   // Skip Add Malt
+#define  EM_WaitRemove       24   // Skip Remove Malt
+#define  EM_WaitIodine       25   // Skip Iodine test
 #define  EM_IodoneTime       26   // Iodine timeout
 //                           27   // Whirlpool (Obsolete)
 //                           28

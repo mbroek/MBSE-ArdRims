@@ -1,0 +1,117 @@
+<!-- 
+            vim:syntax=docbksgml
+-->
+
+<chapter id="handbediening">
+<title>Het Handbediening menu.</title>
+
+<para>
+In dit menu kun je de brouw installatie geheel met de hand bedienen.
+</para>
+<figure><title>Handbediening.</title>
+<mediaobject id="handbedining-1">
+<imageobject>
+<imagedata fileref="handbediening-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Om ongelukken te voorkomen moet je bevestigen dat er water in je maischketel zit.
+</para>
+<figure><title>Handbediening.</title>
+<mediaobject id="handbedining-2">
+<imageobject>
+<imagedata fileref="handbediening-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para><emphasis>Dit menu item verschijnt alleen als de source gecompileerd is met USE_HLT true.</emphasis>
+Vervolgens moet je bevestigen dat ook de spoelwater ketel gevuld is.
+</para>
+<figure><title>Handbediening.</title>
+<mediaobject id="handbedining-3">
+<imageobject>
+<imagedata fileref="handbediening-3.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>
+Tenslotte verschijnt het handbediening menu.
+</para>
+<itemizedlist>
+<listitem><para>De toets <command>HWAT</command> brengt je naar het HeetWATer ketel menu.</para></listitem>
+<listitem><para>De toets <command>KOOK</command> brengt je naar het KOOK ketel menu.</para></listitem>
+<listitem><para>De toets <command>POMP</command> brengt je naar het POMP menu.</para></listitem>
+<listitem><para>De toets <command>STOP</command> brengt je terug naar hoofdmenu en schakelt alles uit.</para></listitem>
+</itemizedlist>
+
+
+
+<sect1 id="manual-hlt">
+<title>Handbediening heetwater.</title>
+<figure><title>Heetwater ketel.</title>
+<mediaobject id="handbedining-hlt-1">
+<imageobject>
+<imagedata fileref="handbediening-hlt-1.png" format="png">
+</imageobject>
+</mediaobject>
+<mediaobject id="handbedining-hlt-2">
+<imageobject>
+<imagedata fileref="handbediening-hlt-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Met de <command>Op</command> en <command>Neer</command> toetsen kan
+de doel temperatuur ingesteld worden. Met de <command>Aan</command>/<command>Uit</command> toets
+kan de verwarming aan en uit gezet worden.
+Met de <command>Terug</command> toets ga je terug naar het handbediening menu. Als de verwarming aan staat
+blijft die aan en de temperatuur regeling blijft werken.
+</para>
+</sect1>
+
+<sect1 id="manual-mlt">
+<title>Kook bediening.</title>
+<figure><title>Kook ketel.</title>
+<mediaobject id="handbedining-mlt-1">
+<imageobject>
+<imagedata fileref="handbediening-mlt-1.png" format="png">
+</imageobject>
+</mediaobject>
+<mediaobject id="handbedining-mlt-2">
+<imageobject>
+<imagedata fileref="handbediening-mlt-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Met de <command>Op</command> en <command>Neer</command> toetsen kan
+de doel temperatuur ingesteld worden. Met de <command>Aan</command>/<command>Uit</command> toets
+kan de verwarming aan en uit gezet worden.
+Rechts op de derde regel zie je de waarde van de PWM regeling, het vermogen voor de verwarming. De
+verwarming wordt hier door de PID gestuurd.
+Met de <command>Terug</command> toets ga je terug naar het handbediening menu. Als de verwarming aan staat
+blijft die aan en de temperatuur regeling blijft werken.
+</para>
+</sect1>
+
+<sect1 id="manual-pump">
+<title>Pomp bediening.</title>
+<figure><title>Pomp.</title>
+<mediaobject id="handbedining-pump-1">
+<imageobject>
+<imagedata fileref="handbediening-pump-1.png" format="png">
+</imageobject>
+</mediaobject>
+<mediaobject id="handbedining-pump-2">
+<imageobject>
+<imagedata fileref="handbediening-pump-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Met de <command>Aan</command>/<command>Uit</command> toets
+kan de pomp aan en uit gezet worden.
+Met de <command>Terug</command> toets ga je terug naar het handbediening menu. Als de pomp aan staat
+blijft die aan staan.
+</para>
+</sect1>
+
+</chapter>
+

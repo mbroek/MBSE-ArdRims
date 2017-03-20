@@ -1,0 +1,27 @@
+<!-- 
+       vim:syntax=docbksgml
+-->
+
+<chapter id="hoofdmenu">
+<title>Het hoofdmenu.</title>
+
+<para>
+Het hoofdmenu van MBSE ArdRims. De drie hoofdfuncties zijn van hier uit te kiezen.
+Zie figuur 2-1.
+</para>
+<figure><title>Hoofdmenu</title>
+<mediaobject id="img-hoofdmenu">
+<imageobject>
+<imagedata fileref="hoofdmenu.png" scale="40" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<listitem><para>De toets <command>--</command> brengt je naar een geheim menu (Lang vasthouden).</para></listitem>
+<listitem><para>De toets <command>HAND</command> brengt je naar het handbediening menu.</para></listitem>
+<listitem><para>De toets <command>AUTO</command> brengt je naar het automatisch brouwen menu.</para></listitem>
+<listitem><para>De toets <command>SETUP</command> brengt je naar het setup/instellingen menu.</para></listitem>
+</itemizedlist>
+
+</chapter>
+

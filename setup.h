@@ -261,14 +261,6 @@ void displayOnOff(int value) {
 }
 
 
-void displayYesNo(int value) {
-#if langNL == true
-  value ? lcd.print(F("JA ")) : lcd.print(F("NEE"));
-#else
-  value ? lcd.print(F("YES")) : lcd.print(F("NO "));
-#endif
-}
-
 
 void set_PID(void) {
 #if langNL == true
@@ -277,17 +269,17 @@ void set_PID(void) {
   editUint("PID kD"      , EM_PID_Kd, PID_Kd_max, PID_Kd_step, PID_Kd_div);
   editByte("SampleTime"  , EM_SampleTime, 20000 / 250, 1000 / 250, & displayMultiply250);
   editByte("Temp Offset" , EM_TempOffset, 100, 0, & displayTempShift50Divide10);
-  editByte("Heat in Boil", EM_BoilHeat, 100, 20, & displayPercentage);
+  editByte("KookVermogen", EM_BoilHeat, 100, 20, & displayPercentage);
 #if USE_HLT == true
   editByte("HLT temp."   , EM_TempHLT, 95, 0, & displaySimpleTemperature);
 #endif
 #else
-  editUint("PID kP"      , EM_PID_Kp, 200, 100);
-  editUint("PID kI"      , EM_PID_Ki, 250,   0);
-  editUint("PID kD"      , EM_PID_Kd, 200, 100);
+  editUint("PID kP"      , EM_PID_Kp, PID_Kp_max, PID_Kp_step, PID_Kp_div);
+  editUint("PID kI"      , EM_PID_Ki, PID_Ki_max, PID_Ki_step, PID_Ki_div);
+  editUint("PID kD"      , EM_PID_Kd, PID_Kd_max, PID_Kd_step, PID_Kd_div);
   editByte("SampleTime"  , EM_SampleTime, 20000 / 250, 1000 / 250, & displayMultiply250);
   editByte("Temp Offset" , EM_TempOffset, 100, 0, & displayTempShift50Divide10);
-  editByte("Heat in Boil", EM_BoilHeat, 100, 20, & displayPercentage);
+  editByte("BoilPower"   , EM_BoilHeat, 100, 20, & displayPercentage);
 #if USE_HLT == true
   editByte("HLT temp."   , EM_TempHLT, 95, 0, & displaySimpleTemperature);
 #endif
@@ -298,7 +290,7 @@ void set_PID(void) {
 void set_Unit(void) {
   //        23456789012
 #if langNL == true
-  editByte("Kook Temperatuu"  , EM_BoilTemperature, 105, 60, & displaySimpleTemperature);
+  editByte("Kook Temp."       , EM_BoilTemperature, 105, 60, & displaySimpleTemperature);
   editByte("Pomp Cyclus"      , EM_PumpCycle, 15, 5, & displayTime);
   editByte("Pomp Rust"        , EM_PumpRest, 5, 0, & displayTime);
 #if USE_PumpPWM == true
@@ -309,13 +301,13 @@ void set_Unit(void) {
   editByte("Pomp Uitmaischen" , EM_PumpMashout, 1, 0, & displayOnOff);
   editByte("Pomp Koken"       , EM_PumpOnBoil, 1, 0, & displayOnOff);
   editByte("Pomp Stop"        , EM_PumpMaxTemp, 105, 80, & displaySimpleTemperature);
-  editByte("PID Pijp"         , EM_PIDPipe, 1, 0, & displayYesNo);
-  editByte("Skip Toevoegen"   , EM_SkipAdd, 1, 0, & displayYesNo);
-  editByte("Skip Verwijderen" , EM_SkipRemove, 1, 0, & displayYesNo);
-  editByte("Skip Jodiumtest"  , EM_SkipIodine, 1, 0, & displayYesNo);
+  editByte("PID Pijp"         , EM_PIDPipe, 1, 0, & displayOnOff);
+  editByte("Vraag Mout Stort" , EM_WaitAdd, 1, 0, & displayOnOff);
+  editByte("Vraag Mout Weg"   , EM_WaitRemove, 1, 0, & displayOnOff);
+  editByte("Vraag Jodiumtest" , EM_WaitIodine, 1, 0, & displayOnOff);
   editByte("Jodium Tijd"      , EM_IodoneTime, 90, 0, & displayTime);
 #else
-  editByte("Boil Temperatur"  , EM_BoilTemperature, 105, 90, & displaySimpleTemperature);
+  editByte("Boil Temp."       , EM_BoilTemperature, 105, 90, & displaySimpleTemperature);
   editByte("Pump Cycle"       , EM_PumpCycle, 15, 5, & displayTime);
   editByte("Pump Rest"        , EM_PumpRest, 5, 0, & displayTime);
 #if USE_PumpPWM == true
@@ -326,10 +318,10 @@ void set_Unit(void) {
   editByte("Pump Mash Out"    , EM_PumpMashout, 1, 0, & displayOnOff);
   editByte("Pump on Boil"     , EM_PumpOnBoil, 1, 0, & displayOnOff);
   editByte("Pump Stop"        , EM_PumpMaxTemp, 105, 80, & displaySimpleTemperature);
-  editByte("PID Pipe"         , EM_PIDPipe, 1, 0, & displayYesNo);
-  editByte("Skip Add"         , EM_SkipAdd, 1, 0, & displayYesNo);
-  editByte("Skip Remove"      , EM_SkipRemove, 1, 0, & displayYesNo);
-  editByte("Skip Iodine"      , EM_SkipIodine, 1, 0, & displayYesNo);
+  editByte("PID Pipe"         , EM_PIDPipe, 1, 0, & displayOnOff);
+  editByte("Ask Add Malt"     , EM_WaitAdd, 1, 0, & displayOnOff);
+  editByte("Ask Remove Malt"  , EM_WaitRemove, 1, 0, & displayOnOff);
+  editByte("Ask Iodinetest"   , EM_WaitIodine, 1, 0, & displayOnOff);
   editByte("Iodine Time"      , EM_IodoneTime, 90, 0, & displayTime);
 #endif
 }
@@ -361,7 +353,7 @@ void set_Auto_Boil(void) {
   /*
        Set Boiltime and hop additions.
   */
-  editByte(stageName[8], EM_BoilTime, 240, 10, & displayTime);
+  editByte(stageName[8], EM_BoilTime, 240, 3, & displayTime);
 #if langNL == true
   editByte("Aantal Hopgiften", EM_NumberOfHops, 10, 0, & displayNumber);
 #else

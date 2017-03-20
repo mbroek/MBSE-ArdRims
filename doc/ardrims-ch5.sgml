@@ -1,0 +1,287 @@
+<!-- 
+            vim:syntax=docbksgml
+-->
+
+<chapter id="auto">
+<title>Het Automatisch menu.</title>
+
+<para>
+Dit is het menu wat automatisch de brouw installatie bestuurd. In grote stappen
+betekend dat opwarmen, maischen op de juiste temperaturen, koken, koelen en eventueel 
+whirlpools. Alles moet van te voren goed zijn ingesteld en je recept moet in de 
+setup ingevoerd zijn bij <command>Maisch Programma</command> en <command>Kook Programma</command>.
+</para>
+<para>Zodra je gaat beginnen moet alles aangesloten zijn en werken. Eventueel kun je met
+de handbediening alles nog even kontroleren.
+</para>
+<para>
+Om ongelukken te voorkomen moet je bevestigen dat er water in je maischketel zit.
+Als je <command>Nee</command> kiest wordt het brouwen meteen afgebroken.
+</para>
+<figure><title>Maischwater aanwezig?</title>
+<mediaobject id="auto-1">
+<imageobject>
+<imagedata fileref="auto-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para><emphasis>Dit menu item verschijnt alleen als de source gecompileerd is met USE_HLT true.</emphasis>
+Vervolgens moet je bevestigen dat ook de spoelwater ketel gevuld is.
+Als je <command>Nee</command> kiest wordt het brouwen nu niet afgebroken maar wordt de
+heetwater ketel niet gebruikt tijdens deze sessie. Je kunt dit dus doen als je wilt brouwen zonder te spoelen.
+</para>
+<figure><title>Spoelwater aanwezig?</title>
+<mediaobject id="auto-2">
+<imageobject>
+<imagedata fileref="auto-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>
+Nu begint het brouwen, allereerst wordt de pomp ontlucht voor zover dat nodig is.
+</para>
+<figure><title>Pomp ontluchten.</title>
+<mediaobject id="auto-prime">
+<imageobject>
+<imagedata fileref="auto-prime.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>
+De installatie wordt nu voor verwarmt. Dit gebeurt op vol vermogen zonder enige
+slimme PID regeling. Maar de doel temperaturen zijn wel 10 graden lager dan de
+werkelijke start temperaturen. Een overshoot is hier dan ook niet erg.
+Indien er ook een heetwater ketel is wordt eerst de kook ketel op temperatuur
+gebracht en daarna de heetwater ketel.
+</para>
+<figure><title>Opwarmen.</title>
+<mediaobject id="auto-opwarmen">
+<imageobject>
+<imagedata fileref="auto-opwarmen.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>
+Na het voorverwarmen wordt de kook ketel verder verwarmt met de PID regeling,
+hierdoor zal de temperatuur voorzichtig op de juiste waarde gebracht worden.
+Dit is de maisch in temperatuur.
+In de tijd dat de kook ketel niet gestuurd wordt, wordt eventueel de heetwater
+ketel verder opgewarmd.
+</para>
+<figure><title>Inmaischen.</title>
+<mediaobject id="auto-maischin">
+<imageobject>
+<imagedata fileref="auto-maischin.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>
+Zodra de inmaisch temperatuur is bereikt zal het systeem vragen om de
+mout te storten. Dit kan afgezet worden in de setup. Zolang niet op <command>Ja</command>
+gedrukt is kun je de mout storten. De pomp is dan ook uit om te voorkomen dat het
+een rommel wordt. Zodra de mout gestort is druk je op <command>Ja</command>.
+</para>
+<figure><title>Mout storten.</title>
+<mediaobject id="auto-storten">
+<imageobject>
+<imagedata fileref="auto-storten.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Na het inmaischen, maisch stap 1.</para>
+<figure><title>Maisch stap 1.</title>
+<mediaobject id="auto-step1-1">
+<imageobject>
+<imagedata fileref="auto-step1-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>De temperatuur is bereikt, de timer loopt voor de resterende tijd
+in deze maisch stap.</para>
+<figure><title>Maisch stap 1, rust.</title>
+<mediaobject id="auto-step1-2">
+<imageobject>
+<imagedata fileref="auto-step1-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Na stap 1 opwarmen voor maisch stap 2. Het doel is nu 72&deg;C.
+</para>
+<figure><title>Maisch stap 2, opwarmen.</title>
+<mediaobject id="auto-step2-1">
+<imageobject>
+<imagedata fileref="auto-step2-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>De temperatuur is bereikt, de timer loopt voor de resterende rusttijd.
+</para>
+<figure><title>Maisch stap 2, rust.</title>
+<mediaobject id="auto-step2-2">
+<imageobject>
+<imagedata fileref="auto-step2-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Na afloop van de rusttijd van de laatste maisch stap komt het scherm om
+de jodium proef te doen. Dit is uit te zetten in de setup. Als de proef goed is druk je
+op <command>Ok</command>. Zo niet wacht je gewoon en het maischen gaat gewoon door.
+Wel heb je elke minuut een geluidsignaal.
+</para>
+<figure><title>Jodium proef.</title>
+<mediaobject id="auto-iodine">
+<imageobject>
+<imagedata fileref="auto-iodine.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>
+Na de jodium proef opwarmen om uit te maischen. Deze stap kan niet overgeslagen worden,
+wel kun je in de setup de temperatuur gelijk zetten met de vorige stap en de tijd op 1 minuut.
+Dat is dan effectief hetzelfde als niet uitmaischen.
+</para>
+<figure><title>Uitmaischen.</title>
+<mediaobject id="auto-mashout-1">
+<imageobject>
+<imagedata fileref="auto-mashout-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Na het uitmaischen wordt gevraagd de mout te verwijderen. Als de moutkorf boven
+de pan hangt kun je in principe al <command>Ja</command> indrukken om het koken te starten.
+Ondertussen kan de korf uitlekken en kun je spoelen.
+</para>
+<figure><title>Mout verwijderen.</title>
+<mediaobject id="auto-remove">
+<imageobject>
+<imagedata fileref="auto-remove.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Opwarmen voor de kook gebeurt zonder PID regeling, het is gewoon 100% vermogen tot de kook
+temperatuur. Met de <command>Op</command> en <command>Neer</command> toetsen kun je de kook temperatuur
+veranderen. Het is verstandig deze iets lager dan de echte kook temperatuur te houden. 
+De kook timer gaat pas lopen als deze temperatuur bereikt is.
+</para>
+<figure><title>Koken.</title>
+<mediaobject id="auto-koken-1">
+<imageobject>
+<imagedata fileref="auto-koken-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Zodra de ingestelde kook temperatuur bereikt is kun je minder vermogen naar de kook ketel
+sturen. In dit scherm staat het op 40%. Met de <command>Op</command> en <command>Neer</command> 
+toetsen kun je dit aanpassen zodat je een mooie kook hebt. De PWM aanduiding wordt afgewisseld
+met de kook timer. Indien je geen heetwater ketel hebt zijn de PWM en timer tegelijk zichtbaar.
+</para>
+<figure><title>Koken.</title>
+<mediaobject id="auto-koken-2">
+<imageobject>
+<imagedata fileref="auto-koken-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Als het tijd is om hop of kruiden toe te voegen klinkt er een geluidsignaal (SOS) en staat er 
+een melding op het scherm.
+</para>
+<figure><title>Hop toevoegen.</title>
+<mediaobject id="auto-hop1">
+<imageobject>
+<imagedata fileref="auto-hop1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>
+Als het koken klaar is wordt start koelen gevraagd. Gebruikers van uitwendige koelers kunnen hier
+het beste <command>Nee</command> drukken, het brouwen wordt dan gestopt. Gebruikers van dompelkoelers
+kiezen hier <command>Ja</command> en beginnen met koelen.
+</para>
+<figure><title>Start koelen.</title>
+<mediaobject id="auto-startkoelen">
+<imageobject>
+<imagedata fileref="auto-startkoelen.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Het koelen is zichtbaar op het display. Zodra de temperatuur beneden de waarde
+komt dat de pomp gebruikt kan worden wordt de <command>Pomp</command> toets ook
+bruikbaar. De pomp kan dan handmatig aangezet worden.
+</para>
+<figure><title>Koelen.</title>
+<mediaobject id="auto-koelen-1">
+<imageobject>
+<imagedata fileref="auto-koelen-1.png" format="png">
+</imageobject>
+</mediaobject>
+<mediaobject id="auto-koelen-2">
+<imageobject>
+<imagedata fileref="auto-koelen-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>
+Indien er een whirlpool is ingesteld wordt het koelen onderbroken om de
+gekozen whirlpool te doen.
+</para>
+<figure><title>Start whirlpool.</title>
+<mediaobject id="auto-whirlpool-1">
+<imageobject>
+<imagedata fileref="auto-whirlpool-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Hier kun je de whirlpool tijd nog veranderen</para>
+<figure><title>Whirlpool tijd.</title>
+<mediaobject id="auto-whirlpool-2">
+<imageobject>
+<imagedata fileref="auto-whirlpool-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Hier wordt de whirlpool gedaan met behulp van de pomp. Bij deze
+whirlpool wordt bijgewarmd indien de temperatuur onder de 74&deg;C dreigt te komen.
+Op deze manier kun je rustig een uur een whirlpool doen zonder dat de temperatuur te laag wordt.
+</para>
+<figure><title>Whirlool.</title>
+<mediaobject id="auto-whirlpool-3">
+<imageobject>
+<imagedata fileref="auto-whirlpool-3.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Na de whirlpool gaan we verder met koelen.</para>
+<figure><title>Start koelen.</title>
+<mediaobject id="auto-whirlpool-4">
+<imageobject>
+<imagedata fileref="auto-whirlpool-4.png" format="png">
+</imageobject>
+</mediaobject>
+<mediaobject id="auto-koelen-3">
+<imageobject>
+<imagedata fileref="auto-koelen-3.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Zodra de koeltemperatuur is bereikt is het brouwen klaar.
+</para>
+<figure><title>Brouwen is klaar.</title>
+<mediaobject id="auto-klaar-1">
+<imageobject>
+<imagedata fileref="auto-klaar-1.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+<para>En terug in het hoofdmenu.</para>
+<figure><title>Hoofdmenu.</title>
+<mediaobject id="auto-klaar-2">
+<imageobject>
+<imagedata fileref="auto-klaar-2.png" format="png">
+</imageobject>
+</mediaobject>
+</figure>
+
+
+
+</chapter>
+

@@ -307,7 +307,7 @@ void set_Unit(void) {
   editByte("Vraag Jodiumtest" , EM_WaitIodine, 1, 0, & displayOnOff);
   editByte("Jodium Tijd"      , EM_IodoneTime, 90, 0, & displayTime);
 #else
-  editByte("Boil Temp."       , EM_BoilTemperature, 105, 90, & displaySimpleTemperature);
+  editByte("Boil Temp."       , EM_BoilTemperature, 105, 60, & displaySimpleTemperature);
   editByte("Pump Cycle"       , EM_PumpCycle, 15, 5, & displayTime);
   editByte("Pump Rest"        , EM_PumpRest, 5, 0, & displayTime);
 #if USE_PumpPWM == true

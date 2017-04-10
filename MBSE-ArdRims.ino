@@ -850,7 +850,7 @@ void manual_mode() {
     }
 
     if (htempReached && (hreachedBeep == false)) {
-      BuzzerPlay(BUZZ_Warn);
+      BuzzerPlay(BUZZ_TempReached);
       hreachedBeep = true;
     }
 
@@ -863,6 +863,7 @@ void manual_mode() {
     switch (manualMenu) {
 
       case 0:          // manual Main menu
+        Prompt(P0_manual);
 #if USE_HLT == true
         Prompt(P3_HBPQ);
         if (button == buttonUp)
@@ -890,11 +891,13 @@ void manual_mode() {
 
 #if USE_HLT == true
       case 1:         // manual Hot Liquer Tank
+        Prompt(P0_manhlt);
         (hheat) ? Prompt(P3_UD0Q) : Prompt(P3_UD1Q);
         ReadButton(Direction, Timer, button);
         Set(hset_temp, 110, 20, 0.25, Timer, Direction, button);
-        if ((hset_temp - HLT_SetPoint) > 2) {
-          // Increased setting at least 2 degrees
+        if ((kp_repeat_count > 2) && (Direction == DirectionUp) && htempReached) {
+          // Increased setting, long keypress
+          BuzzerPlay(BUZZ_Prompt);
           htempReached = hreachedBeep = false;
         }
         if (button == buttonStart) {
@@ -906,11 +909,13 @@ void manual_mode() {
 #endif
 
       case 2:          // manual Boil Kettle heater
+        Prompt(P0_manmlt);
         (mheat) ? Prompt(P3_UD0Q) : Prompt(P3_UD1Q);
         ReadButton(Direction, Timer, button);
         Set(mset_temp, 110, 20, 0.25, Timer, Direction, button);
-        if ((mset_temp - Setpoint) > 2) {
-          // Increased setting at least 2 degrees
+        if ((kp_repeat_count > 2) && (Direction == DirectionUp) && mtempReached) {
+          // Increased setting, long keypress
+          BuzzerPlay(BUZZ_Prompt);
           mtempReached = mreachedBeep = false;
         }
         if (button == buttonStart) {
@@ -921,6 +926,7 @@ void manual_mode() {
         break;
 
       case 3:          // manual Pump control.
+        Prompt(P0_manpump);
 #if USE_PumpPWM == true
         (pumpPWM) ? Prompt(P3_xx0Q) : Prompt(P3_xx1Q);
         PumpControl(_EM_PumpSlow, button);
@@ -1693,11 +1699,8 @@ void AllThreads() {
 
 
 void setup() {
-#if (DebugPID == true || DebugProcess == true || DebugButton == true || DebugReadWrite == true || DebugBuzzer == true)
+  // Allways init the serial debug port
   Serial.begin(115200);
-#else
-  Serial.begin(9600);
-#endif
 
   pinMode (HeatControlPin, OUTPUT);
   pinMode (PumpControlPin, OUTPUT);
@@ -1782,9 +1785,9 @@ void setup() {
       Serial.println("EEPROM upgrade v2 rev1");
       ew_byte(EM_NewRevision, 1);
       // flip values.
-      ew_byte(EM_WaitAdd, er_byte(EM_WaitAdd) ? 0:1);
-      ew_byte(EM_WaitRemove, er_byte(EM_WaitRemove) ? 0:1);
-      ew_byte(EM_WaitIodine, er_byte(EM_WaitIodine) ? 0:1);
+      ew_byte(EM_WaitAdd, er_byte(EM_WaitAdd) ? 0 : 1);
+      ew_byte(EM_WaitRemove, er_byte(EM_WaitRemove) ? 0 : 1);
+      ew_byte(EM_WaitIodine, er_byte(EM_WaitIodine) ? 0 : 1);
     }
   }
 }

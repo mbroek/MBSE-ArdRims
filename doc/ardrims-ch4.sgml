@@ -63,6 +63,11 @@ Tenslotte verschijnt het handbediening menu.
 <para>Met de <command>Op</command> en <command>Neer</command> toetsen kan
 de doel temperatuur ingesteld worden. Met de <command>Aan</command>/<command>Uit</command> toets
 kan de verwarming aan en uit gezet worden.
+Als de doel temperatuur bereikt is klinken er drie piepjes. Druk je nu op de <command>Op</command> toets
+en houd je die even vast dan wordt deze waarschuwing gereset, er is dan een nieuwe doel temperatuur ingesteld.
+Zodra dit gebeurt klinkt er een korte piep.
+</para>
+<para>
 Met de <command>Terug</command> toets ga je terug naar het handbediening menu. Als de verwarming aan staat
 blijft die aan en de temperatuur regeling blijft werken.
 </para>
@@ -85,6 +90,11 @@ blijft die aan en de temperatuur regeling blijft werken.
 <para>Met de <command>Op</command> en <command>Neer</command> toetsen kan
 de doel temperatuur ingesteld worden. Met de <command>Aan</command>/<command>Uit</command> toets
 kan de verwarming aan en uit gezet worden.
+Als de doel temperatuur bereikt is klinken er drie piepjes. Druk je nu op de <command>Op</command> toets
+en houd je die even vast dan wordt deze waarschuwing gereset, er is dan een nieuwe doel temperatuur ingesteld.
+Zodra dit gebeurt klinkt er een korte piep.
+</para>
+<para>
 Rechts op de derde regel zie je de waarde van de PWM regeling, het vermogen voor de verwarming. De
 verwarming wordt hier door de PID gestuurd.
 Met de <command>Terug</command> toets ga je terug naar het handbediening menu. Als de verwarming aan staat

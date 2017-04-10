@@ -11,6 +11,11 @@
 #define  P0_stage        105
 #define  P0_iodine       106
 #define  P0_prepare      107
+#if USE_HLT == true
+#define  P0_manhlt       108
+#endif
+#define  P0_manmlt       109
+#define  P0_manpump      110
 
 #define  P1_clear        200
 #define  P1_pBKwater     201
@@ -198,6 +203,29 @@ void Prompt(int Pmpt) {
       lcd.print(F(" **   OPWARMEN   ** "));
 #else
       lcd.print(F(" **   PRE-HEAT   ** "));
+#endif
+      return;
+#if USE_HLT == true
+    case P0_manhlt:
+#if langNL == true
+      lcd.print(F("   HWAT BEDIENING  "));
+#else
+      lcd.print(F("    HLT CONTROL    "));
+#endif
+      return;
+#endif
+    case P0_manmlt:
+#if langNL == true
+      lcd.print(F("   KOOK BEDIENING  "));
+#else
+      lcd.print(F("    BOIL CONTROL   "));
+#endif
+      return;
+    case P0_manpump:
+#if langNL == true
+      lcd.print(F("  POMP BEDIENING   "));
+#else
+      lcd.print(F("   PUMP CONTROL    "));
 #endif
       return;
 
@@ -484,7 +512,7 @@ void Prompt(int Pmpt) {
     case X1Y2_timer:
       (TimeUp) ? TimerShow(TimeSpent, 1, 2) : TimerShow(TimeLeft, 1, 2);
       return;
-      
+
     case X11Y2_timer:
       (TimeUp) ? TimerShow(TimeSpent, 11, 2) : TimerShow(TimeLeft, 11, 2);
       return;
@@ -555,6 +583,11 @@ boolean WaitForConfirm(byte Type, boolean Pid, int P0, int P1, int P2, int P3) {
     Prompt(P1);
     Prompt(P2);
     Prompt(P3);
+
+    if (P1 == 0) {
+      Prompt(X1Y1_temp);
+      Prompt(X11Y1_setpoint);
+    }
 
     if (Pid)
       PID_Heat(true);

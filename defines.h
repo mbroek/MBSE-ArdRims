@@ -1,7 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define  VERSION        "0.2.2"
+#define  VERSION        "0.2.3"
 
 /*
    EEPROM MAP
@@ -184,11 +184,11 @@
 #define StageWhirlpool9      11     // Whirlpool 88..100 °C
 #define StageWhirlpool7      12     // Whirlpool 71..77 °C
 #define StageWhirlpool6      13     // Whirlpool 60..66 °C
-#define StageInit           100     // Initial questions.
-#define StagePrepare        101     // Prepare system, preheat etc.
-#define StageDelayStart     102     // Delayed start.
-#define StageAborted        200     // Aborted by user.
-#define StageFinished       201     // Normal finished brew.
+#define StageInit            50     // Initial questions.
+#define StageDelayStart      51     // Delayed start.
+#define StagePrepareHLT      52     // Prepare HLT, preheat etc.
+#define StageAborted         90     // Aborted by user.
+#define StageFinished        91     // Normal finished brew.
 #define StageNothing        255     // There is no Stage.
 
 #define DirectionNone         0

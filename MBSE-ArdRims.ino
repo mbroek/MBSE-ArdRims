@@ -981,6 +981,9 @@ void auto_mode() {
 #endif
   float   _EM_StageTemp;
   float   DeltaTemp;
+#if USE_HLT == true
+  int     AvailableTime;
+#endif
 
   CurrentState = StageNothing;
   LoadPIDsettings();
@@ -1069,7 +1072,6 @@ startover:
           break;
 
         case StageBoil:
-          TimerSet(240 * 60);      // Just make sure the timer runs.
           Output = 255;
           stageTemp = Setpoint = er_byte(EM_BoilTemperature);
           stageTime = er_byte(EM_BoilTime);
@@ -1097,7 +1099,6 @@ startover:
             stageTemp = er_uint(EM_CoolingTemp) / 16.0;
           }
 #if DebugProcess == true
-          TimerSet(240 * 60);
           DebugTimeSerial();
           Serial.print(F("Start Cooling Temp="));
           Serial.print(Temp_MLT);
@@ -1160,7 +1161,7 @@ startover:
 #endif
           break;
 
-        case StagePrepare:
+        case StagePrepareHLT:
           /*
              Pump Prime
           */
@@ -1173,7 +1174,6 @@ startover:
           }
           pump_hide();
           ew_byte(EM_AutoModeStarted, 1);
-          Setpoint = (er_uint(EM_StageTemp(0)) / 16.0) - 10.0; // 10 below Mash-in
           lcd.clear();
           break;
       }
@@ -1235,7 +1235,6 @@ startover:
             NewState = CurrentState + 1;
             break;      // skip this step
           }
-          TimerSet(240 * 60);      // Just make sure the timer runs.
           stageTemp = Setpoint = _EM_StageTemp;
           PID_Heat(true);
           MashState = MashWaitTemp;
@@ -1305,7 +1304,11 @@ startover:
 #if USE_HLT == true
               HLT_off();
 #endif
-              if (! WaitForConfirm(2, true, P0_stage, X1Y1_temp, P2_malt_add, P3_proceed)) {
+
+              // Setpoint for the next Mash step early.
+              _EM_StageTemp = er_uint(EM_StageTemp(CurrentState + 1)) / 16.0;
+              stageTemp = Setpoint = _EM_StageTemp;
+              if (! WaitForConfirm(2, true, P0_stage, 0, P2_malt_add, P3_proceed)) {
                 NewState = StageAborted;
               }
             }
@@ -1594,64 +1597,61 @@ startover:
           break;
         }
 #if USE_HLT == true
-        HLT_SetPoint = er_byte(EM_TempHLT) - 10.0;
+        /*
+           Calculate HLT setpoint for pre-heat. Substract the
+           available Mash rest times, asume 0.5 degrees/minute
+           heat capacity during mash.
+        */
+        AvailableTime = 0;
+        for (byte i = 1; i < 6; i++) // Only normal Mash steps
+          AvailableTime += er_byte(EM_StageTime(i));
+        HLT_SetPoint = er_byte(EM_TempHLT) - ((AvailableTime / 2) + 2);
+
         if (HLT_SetPoint && ! PromptForMashWater(false)) {
           // No Sparge water, turn it off and continue
           HLT_SetPoint = 0;
         }
 #endif
         // Initial questions, delay start etc.
-        NewState = StagePrepare;
+        NewState = StageDelayStart;
 #if FakeHeating == true
-        Temp_MLT = (er_uint(EM_StageTemp(0)) / 16.0) - 15.0;
+        Fake_MLT = (er_uint(EM_StageTemp(0)) / 16.0) - 15.0;
 #if USE_HLT == true
         if (HLT_SetPoint)
-          Temp_HLT = HLT_SetPoint - 18.2;
+          Fake_HLT = HLT_SetPoint - 18.2;
 #endif
-#endif
-        break;
-
-      case StagePrepare:
-        /*
-           Heat Mash water to 10 degrees below Mash-in
-        */
-        Prompt(P0_prepare);
-#if USE_HLT == true
-        DisplayValues((Temp_MLT < Setpoint), false, Temp_HLT != 0.0, HLT_SetPoint);
-#else
-        DisplayValues((Temp_MLT < Setpoint), false, false, false);
-#endif
-        if (Temp_MLT < Setpoint) {
-          Output = 255;
-          PID_Heat(false);
-          break;
-        }
-        bk_heat_off();
-
-#if USE_HLT == true
-        /*
-           Heat Sparge water if set to 10 degrees below setpoint
-        */
-        if (! HLT_SetPoint) {      // If HLT is off, skip heatup.
-          NewState = StageDelayStart;
-          break;
-        }
-        // Change setpoint here?
-        HLT_Heat();
-        if (Temp_HLT >= HLT_SetPoint) {
-          BuzzerPlay(BUZZ_Warn);
-          NewState = StageDelayStart;
-          HLT_SetPoint = er_byte(EM_TempHLT);  // Set final HLT setpoint.
-        }
-#else
-        NewState = StageDelayStart;
 #endif
         break;
 
       case StageDelayStart:
-        // Wait for start, keep system hot.
-        // Or, first delay and then preheat?
+        // TODO: wait until starttime
+        NewState = StagePrepareHLT;
+        break;
+
+      case StagePrepareHLT:
+        pump_off();
+
+#if USE_HLT == true
+        /*
+           Heat Sparge water.
+        */
+        if (! HLT_SetPoint) {      // If HLT is off, skip heatup.
+          NewState = StageMashIn;
+          break;
+        }
+        Prompt(P0_prepare);
+        DisplayValues((Temp_MLT < Setpoint), false, Temp_HLT != 0.0, HLT_SetPoint);
+        // Change setpoint here?
+        HLT_Heat();
+        if (Temp_HLT >= HLT_SetPoint) {
+          BuzzerPlay(BUZZ_Warn);
+          NewState = StageMashIn;
+          HLT_SetPoint = er_byte(EM_TempHLT);  // Set final HLT setpoint.
+        }
+#else
+        DisplayValues((Temp_MLT < Setpoint), false, false, false);
         NewState = StageMashIn;
+#endif
         break;
 
       case StageAborted:

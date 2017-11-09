@@ -267,6 +267,7 @@ void pump_off();
 void pump_PWM(byte);
 void HLT_on();
 void HLT_off();
+void HLT_Heat();
 void AllThreads();
 
 #include "buzzer.h"
@@ -1006,7 +1007,7 @@ void auto_mode() {
   */
   if (er_byte(EM_AutoModeStarted)) {
     lcd.clear();
-    if (WaitForConfirm(2, false, 0, P1_resume, 0, P3_proceed)) {
+    if (WaitForConfirm(2, false, false, 0, P1_resume, 0, P3_proceed)) {
       NewState = CurrentState = er_byte(EM_StageResume);
       TimeLeft = ResumeTime = er_byte(EM_StageTimeLeft);
       Resume = true;
@@ -1085,7 +1086,7 @@ startover:
           break;
 
         case StageCooling:
-          if (! WaitForConfirm(2, false, 0, P1_cool, 0, P3_proceed)) {
+          if (! WaitForConfirm(2, false, false, 0, P1_cool, 0, P3_proceed)) {
             NewState = StageFinished;
             goto startover;
           }
@@ -1111,7 +1112,7 @@ startover:
         case StageWhirlpool9:
         case StageWhirlpool7:
         case StageWhirlpool6:
-          if (! WaitForConfirm(2, false, 0, P1_whirl, 0, P3_proceed)) {
+          if (! WaitForConfirm(2, false, false, 0, P1_whirl, 0, P3_proceed)) {
             if (NewState == StageWhirlpool2)
               NewState = StageFinished;
             else
@@ -1308,7 +1309,7 @@ startover:
               // Setpoint for the next Mash step early.
               _EM_StageTemp = er_uint(EM_StageTemp(CurrentState + 1)) / 16.0;
               stageTemp = Setpoint = _EM_StageTemp;
-              if (! WaitForConfirm(2, true, P0_stage, 0, P2_malt_add, P3_proceed)) {
+              if (! WaitForConfirm(2, true, true, P0_stage, 0, P2_malt_add, P3_proceed)) {
                 NewState = StageAborted;
               }
             }
@@ -1318,10 +1319,10 @@ startover:
             }
             if ((CurrentState == StageMashOut) && (er_byte(EM_WaitRemove))) {
               pump_off();
-#if USE_HLT == true
-              HLT_off();
-#endif
-              if (! WaitForConfirm(2, (er_byte(EM_PIDPipe)), P0_stage, X1Y1_temp, P2_malt_rem, P3_proceed)) {
+//#if USE_HLT == true
+//              HLT_off();
+//#endif
+              if (! WaitForConfirm(2, (er_byte(EM_PIDPipe)), true, P0_stage, X1Y1_temp, P2_malt_rem, P3_proceed)) {
                 NewState = StageAborted;
               }
             }
@@ -1396,6 +1397,7 @@ startover:
 
 #if USE_HLT == true
         DisplayValues(true, tempBoilReached, Temp_HLT != 0.0, false);
+        HLT_off();
 #else
         DisplayValues(true, tempBoilReached, false, false);
 #endif

@@ -571,7 +571,7 @@ boolean PromptForMashWater(boolean Mash) {
     Pid = false      no PID
     P0, P1, P2, P3   prompts to display or zero
 */
-boolean WaitForConfirm(byte Type, boolean Pid, int P0, int P1, int P2, int P3) {
+boolean WaitForConfirm(byte Type, boolean Pid, boolean Hlt, int P0, int P1, int P2, int P3) {
 
   BuzzerPlay(BUZZ_Prompt);
   while (true) {
@@ -591,6 +591,11 @@ boolean WaitForConfirm(byte Type, boolean Pid, int P0, int P1, int P2, int P3) {
 
     if (Pid)
       PID_Heat(true);
+
+#if USE_HLT == true
+    if (Hlt && HLT_SetPoint)
+        HLT_Heat();
+#endif
 
     if (button == buttonStart)
       return true;

@@ -497,7 +497,7 @@ boolean RecipePrompt(const char *label, byte numRecipe) {
     lcd.print(F("0"));
   lcd.print(numRecipe);
   lcd.print(F("?"));
-  return (! WaitForConfirm(2, false, 0, 0, 0, P3_proceed));
+  return (! WaitForConfirm(2, false, false, 0, 0, 0, P3_proceed));
 }
 
 
@@ -771,7 +771,7 @@ void RecipeDelete(void) {
 void InitRecipes(void) {
   byte  i, j;
 
-  if (! WaitForConfirm(2, false, 0, 0, 0, P3_proceed)) {
+  if (! WaitForConfirm(2, false, false, 0, 0, 0, P3_proceed)) {
     return;
   }
 

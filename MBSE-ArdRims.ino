@@ -71,13 +71,19 @@
 const byte SensorMLTPin = 11;
 #elif PCBType == 2
 const byte SensorMLTPin =  8;
-#elif (PCBType == 3 || PCBType == 4 || PCBType == 6)
+#elif (PCBType == 3 || PCBType == 4)
 const byte SensorMLTPin =  7;
 #elif PCBType == 5
 const byte SensorMLTPin =  7;
 #if USE_HLT == true
 // Sensor for sparge water.
 const byte SensorHLTPin = 11;
+#endif // USE_HLT
+#elif PCBType == 6
+const byte SensorMLTPin =  7;
+#if USE_HLT == true
+// Sensor for sparge water.
+const byte SensorHLTPin = 10; // Pin 13 does not work. Don't know why. Hardware issue? (Chipmunk03)
 #endif // USE_HLT
 #endif // PCBType
 #endif // USE_DS18020
@@ -111,6 +117,10 @@ const byte SensorHLTPin = 11;
 #define PumpControlPin   6
 #define BuzzControlPin   11
 #define HeatControlPin   9
+#if USE_HLT == true
+// Heater for sparge water
+#define HLTControlPin    12
+#endif
 #endif
 
 // Keyboard buttons

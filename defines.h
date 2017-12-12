@@ -1,7 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define  VERSION        "0.2.5"
+#define  VERSION        "0.2.6"
 
 /*
    EEPROM MAP
@@ -39,6 +39,7 @@
 #define  EM_PumpOnBoil       19   // Pump during boil
 #define  EM_PumpMaxTemp      20   // Pump max temp °C
 //                           21   // Pump max temp °F (Obsolete)
+#define  EM_MashPower        21   // Mash heat power percentage
 #define  EM_PIDPipe          22   // PID Pipe
 #define  EM_WaitAdd          23   // Skip Add Malt
 #define  EM_WaitRemove       24   // Skip Remove Malt

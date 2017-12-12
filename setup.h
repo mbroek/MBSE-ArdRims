@@ -270,6 +270,7 @@ void set_PID(void) {
   editByte("SampleTime"  , EM_SampleTime, 20000 / 250, 1000 / 250, & displayMultiply250);
   editByte("Temp Offset" , EM_TempOffset, 100, 0, & displayTempShift50Divide10);
   editByte("KookVermogen", EM_BoilHeat, 100, 20, & displayPercentage);
+  editByte("MashVermogen", EM_MashPower, 100, 20, & displayPercentage);
 #if USE_HLT == true
   editByte("HLT temp."   , EM_TempHLT, 95, 0, & displaySimpleTemperature);
 #endif
@@ -280,6 +281,7 @@ void set_PID(void) {
   editByte("SampleTime"  , EM_SampleTime, 20000 / 250, 1000 / 250, & displayMultiply250);
   editByte("Temp Offset" , EM_TempOffset, 100, 0, & displayTempShift50Divide10);
   editByte("BoilPower"   , EM_BoilHeat, 100, 20, & displayPercentage);
+  editByte("MashPower"   , EM_MashPower, 100, 20, & displayPercentage);
 #if USE_HLT == true
   editByte("HLT temp."   , EM_TempHLT, 95, 0, & displaySimpleTemperature);
 #endif

@@ -239,8 +239,9 @@ byte    pumpTime;
 #if USE_PumpPWM == true
 byte    pumpPWM = 0;
 #endif
+byte    MashPower = 100;
 
-int     SampleTime;
+unsigned long SampleTime;
 
 double  Input;
 double  Output;
@@ -489,6 +490,7 @@ void LCDChar(byte X, byte Y, byte C) {
 void LoadPIDsettings() {
   // send the PID settings to the PID
   SampleTime = er_byte(EM_SampleTime) * 250;
+  MashPower = er_byte(EM_MashPower);
   myPID.SetTunings(er_uint(EM_PID_Kp) / (PID_Kp_div + 0.0), er_uint(EM_PID_Ki) / (PID_Ki_div + 0.0), er_uint(EM_PID_Kd) / (PID_Kd_div + 0.0));
   myPID.SetSampleTime(SampleTime);
 
@@ -508,7 +510,10 @@ void LoadPIDsettings() {
   Serial.print("  Kd: ");
   Serial.print(myPID.GetKd(), 3);
   Serial.print("  Sampletime: ");
-  Serial.println(SampleTime);
+  Serial.print(SampleTime);
+  Serial.print("  Mash power: ");
+  Serial.print(MashPower);
+  Serial.println("%");
 #endif
 }
 
@@ -521,12 +526,15 @@ unsigned long lastTime;
 */
 void PID_Heat(boolean autoMode) {
   boolean rc;
+  unsigned long RealTime;
 
   TimerRun();
   rc = false;
 
   if (autoMode) {
     rc = myPID.Compute();
+    // All heating steps except boiling, heat maximum 20..100%
+    RealTime = (SampleTime * MashPower) / 100;
   } else {
     // Now we must schedule the output window ourself.
     unsigned long now = millis();
@@ -535,6 +543,8 @@ void PID_Heat(boolean autoMode) {
       lastTime = now;
       rc = true;
     }
+    // Always full power.
+    RealTime = SampleTime;
   }
 
   if (rc) {
@@ -555,11 +565,14 @@ void PID_Heat(boolean autoMode) {
     Serial.print(F(" Output: "));
     if (Output <  10 && Output >= 0) Serial.print(F("  "));
     if (Output < 100 && Output >= 10) Serial.print(F(" "));
-    Serial.println(Output);
+    Serial.print(Output);
+    Serial.print(F(" SampleTime: "));
+    Serial.print(RealTime);
+    Serial.println();
 #endif
   }
 
-  (int((Output / 255) * SampleTime) > gCurrentTimeInMS - w_StartTime) ? bk_heat_on() : bk_heat_off();
+  (int((Output / 255) * RealTime) > gCurrentTimeInMS - w_StartTime) ? bk_heat_on() : bk_heat_off();
 }
 
 
@@ -1329,9 +1342,6 @@ startover:
             }
             if ((CurrentState == StageMashOut) && (er_byte(EM_WaitRemove))) {
               pump_off();
-//#if USE_HLT == true
-//              HLT_off();
-//#endif
               if (! WaitForConfirm(2, (er_byte(EM_PIDPipe)), true, P0_stage, X1Y1_temp, P2_malt_rem, P3_proceed)) {
                 NewState = StageAborted;
               }
@@ -1800,6 +1810,12 @@ void setup() {
       ew_byte(EM_WaitAdd, er_byte(EM_WaitAdd) ? 0 : 1);
       ew_byte(EM_WaitRemove, er_byte(EM_WaitRemove) ? 0 : 1);
       ew_byte(EM_WaitIodine, er_byte(EM_WaitIodine) ? 0 : 1);
+    }
+    if (er_byte(EM_NewRevision) == 1) {
+      Serial.println("EEPROM upgrade v2 rev2");
+      ew_byte(EM_NewRevision, 2);
+      // Init new setting.
+      ew_byte(EM_MashPower, 100);   // 100% Mash heat power
     }
   }
 }

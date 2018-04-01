@@ -1,7 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define  VERSION        "0.2.6"
+#define  VERSION        "0.2.7"
 
 /*
    EEPROM MAP
@@ -158,6 +158,8 @@
 #define  EM_PID_Kp            EM_NewBase+8        // PID P (uint16_t)
 #define  EM_PID_Ki            EM_NewBase+10       // PID I (uint16_t)
 #define  EM_PID_Kd            EM_NewBase+12       // PID D (uint16_t)
+#define  EM_P_ON_M            EM_NewBase+14       // P_ON_M or P_ON_E PID behavior.
+
 
 #define  PID_Kp_max           2048                // Maximum setup value
 #define  PID_Kp_step          PID_Kp_max / 65536.0

@@ -17,11 +17,11 @@
     </authorgroup>
 
     <copyright>
-	<year>2016-2017</year>
+	<year>2016-2018</year>
 	<holder role='mailto:mbse@mbse.eu'>M. Broek</holder>
     </copyright>
 
-    <releaseinfo>Version 0.2.0</releaseinfo>
+    <releaseinfo>Version 0.2.7</releaseinfo>
     <abstract>
 	<para>
 	    Documentatie voor de MBSE ArdRims brouw controller voor de BrewBoard hardware.

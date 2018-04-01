@@ -28,6 +28,10 @@
 #define USE_HLT         false       // A HLT shared with the MLT.
 #define Silent          false       // No beeps (during development).
 /*
+   Distilling activates code to control distillation with a GF.
+*/
+#define Distilling      false       // Distillation
+/*
    USE_PumpPWM is for electronic regulated pumps without relays. Pump rest is slow, cooling is slow,
    else full speed.
    In the Unit setup is an extra menu to adjust the slow speed. Connect the pump and let it pump to
@@ -267,8 +271,11 @@ float   Temp_HLT = 0.0;
 float   HLT_SetPoint;
 #endif
 
-
+#ifdef P_ON_M
+PID myPID(&Input, &Output, &Setpoint, 100, 40, 0, P_ON_E, DIRECT);
+#else
 PID myPID(&Input, &Output, &Setpoint, 100, 40, 0, DIRECT);
+#endif
 
 void Temperature();
 void PID_Heat(boolean);
@@ -491,7 +498,16 @@ void LoadPIDsettings() {
   // send the PID settings to the PID
   SampleTime = er_byte(EM_SampleTime) * 250;
   MashPower = er_byte(EM_MashPower);
-  myPID.SetTunings(er_uint(EM_PID_Kp) / (PID_Kp_div + 0.0), er_uint(EM_PID_Ki) / (PID_Ki_div + 0.0), er_uint(EM_PID_Kd) / (PID_Kd_div + 0.0));
+#ifdef P_ON_M
+  myPID.SetTunings(er_uint(EM_PID_Kp) / (PID_Kp_div + 0.0), 
+                   er_uint(EM_PID_Ki) / (PID_Ki_div + 0.0), 
+                   er_uint(EM_PID_Kd) / (PID_Kd_div + 0.0), 
+                   er_byte(EM_P_ON_M));
+#else
+  myPID.SetTunings(er_uint(EM_PID_Kp) / (PID_Kp_div + 0.0), 
+                   er_uint(EM_PID_Ki) / (PID_Ki_div + 0.0), 
+                   er_uint(EM_PID_Kd) / (PID_Kd_div + 0.0));
+#endif
   myPID.SetSampleTime(SampleTime);
 
   /*
@@ -513,7 +529,16 @@ void LoadPIDsettings() {
   Serial.print(SampleTime);
   Serial.print("  Mash power: ");
   Serial.print(MashPower);
+#ifdef P_ON_M
+  Serial.print("% PID_on_");
+  if (er_byte(EM_P_ON_M) == P_ON_M) {
+    Serial.println("Measurement");
+  } else {
+    Serial.println("Error");
+  }
+#else
   Serial.println("%");
+#endif
 #endif
 }
 
@@ -805,6 +830,108 @@ void IodineTest(void) {
 }
 
 
+#if Distilling == true
+
+/*
+   Distilling mode
+*/
+void distilling_mode() {
+  byte    distillerMenu = 0;
+  float   mset_temp     = 70.0;
+  boolean mheat         = false;
+  boolean mtempReached  = false;
+  boolean mreachedBeep  = false;
+  byte    heat_power    = 80;
+  byte    hold_power    = 10;
+  byte    button        = 0;
+
+  lcd.clear();
+  Prompt(P0_distilling);
+
+  if (PromptForMashWater(true) == false) {
+    lcd.clear();
+    return;
+  }
+
+  Prompt(P1_clear);
+  LoadPIDsettings();
+  Boil_output = er_byte(EM_BoilHeat);
+
+#if FakeHeating == true
+  Fake_MLT = 60.1;
+#endif
+
+  while (true) {
+    AllThreads();
+    button = ReadKey();
+    Setpoint = mset_temp;
+    Input = Temp_MLT;
+    (mheat) ? PID_Heat(false) : bk_heat_hide();
+    DisplayValues(mheat, mtempReached, false, false);
+
+    switch (distillerMenu) {
+
+      case 0:          // distiller Main menu
+        Prompt(P0_distilling);
+        Prompt(P3_UDBQ);
+        ReadButton(Direction, Timer, button);
+        Set(mset_temp, 110, 70, 0.25, Timer, Direction, button);
+
+        if (button == buttonStart)
+          distillerMenu = 1;
+
+        if (button == buttonEnter) {
+          TimeUp = false;
+          lcd.clear();
+          bk_heat_hide();
+          return;
+        }
+        break;
+
+      case 1:          // distiller menu, boiling
+        if (mtempReached == false) {
+          if (Input >= Setpoint) {
+            mtempReached = true;
+          }
+        }
+
+        if (mtempReached && (mreachedBeep == false)) {
+          BuzzerPlay(BUZZ_TempReached);
+          mreachedBeep = true;
+          TimeSpent = 0;
+          TimeUp = true;  // Count upwards
+        }
+
+        Prompt(P0_distilling);
+        if (mheat) {
+          Prompt(P3_UD0Q);
+          ReadButton(Direction, Timer, button);
+          if (Input >= Setpoint) {
+            Set(hold_power, heat_power, 0, 1, Timer, Direction, button);
+            Output = hold_power * 255 / 100;
+          } else {
+            Set(heat_power, 100, hold_power, 1, Timer, Direction, button);
+            Output = heat_power * 255 / 100;
+          }
+        } else {
+          Prompt(P3_xx1Q);
+          Output = 0;
+        }
+        if (button == buttonStart) {
+          (mheat) ? mheat = false : mheat = true;
+        }
+        if (button == buttonEnter) {
+          distillerMenu = 0;
+          mtempReached = mreachedBeep = false;
+        }
+        break;
+
+
+    }
+  }
+}
+
+#endif
 
 /*
    Manual control
@@ -1817,6 +1944,12 @@ void setup() {
       // Init new setting.
       ew_byte(EM_MashPower, 100);   // 100% Mash heat power
     }
+    if (er_byte(EM_NewRevision) == 2) {
+      Serial.println("EEPROM upgrade v2 rev3");
+      ew_byte(EM_NewRevision, 3);
+      // Init new PID setting, even if the old library is used.
+      ew_byte(EM_P_ON_M, 1);        // Default to PID on Error.
+    }
   }
 }
 
@@ -1842,6 +1975,13 @@ void loop() {
       setup_mode();
       mainMenu = 0;
       break;
+
+#if Distilling == true
+    case 4:
+      distilling_mode();
+      mainMenu = 0;
+      break;
+#endif
 
     default:
 
@@ -1894,6 +2034,13 @@ void loop() {
         }
         lcd.clear();
       }
+#endif
+#if Distilling == true
+#if DebugErrors == true
+#error "DebugErrors and Distilling cannot be used at the same time"
+#endif
+      if (button == buttonUp)
+        mainMenu = 4;
 #endif
       break;
   }

@@ -73,8 +73,36 @@ verschijnt vanzelf het volgende item, PID kD.
 0 en 32768 in stappen van 0,5. De <command>Op</command> en <command>Neer</command> toetsen hebben drie
 stap snelheden. Hoe langer je de toets vasthoud, hoe groter de stappen worden.
 De standaard waarde is 15000,000. Dit is 100 maal de PID kP waarde en is een goede startwaarde.
+</para>
+<para><emphasis>
+Let op:</emphasis> er zijn twee manieren van werken met de PID, Klassiek UIT en AAN. De waarde zoals hierboven is
+goed voor Klassiek AAN. In de nieuwere Klassiek UIT instelling moet deze deriviate waarde anders ingesteld
+worden, op 1.000 of 1.500.
+</para>
+<para>
 Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
-verschijnt vanzelf het volgende item, SampleTime.
+verschijnt vanzelf het volgende item, PID Klassiek.
+</para>
+</sect2>
+
+<sect2 id="setup-pid-klassiek">
+<title>PID Klassiek</title>
+<figure><title>PID Klassiek.</title>
+<mediaobject id="pid-klassiek">
+<imageobject>
+<imagedata fileref="pid-klassiek.png" format="png" scale="35">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Sinds versie 0.2.7 is er een nieuwe manier om de PID te laten werken.
+Deze keuze is alleen zichtbaar als de software gecompileerd is met een 
+recente PID library.
+Deze nieuwe manier werkt beter voor trage systemen zoals een brouw installatie.
+Standaard staat het systeem ingesteld op Klassiek AAN. Wil je de nieuwe manier
+gebruiken, en die is aan te bevelen, dan moet je niet vergeten de PID D waarde te
+verlagen tot 1.000 of 1.500. Deze instelling is dan Klassiek UIT, modern dus.
+Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
+verschijnt vanzelf het volgende item, Sampletime.
 </para>
 </sect2>
 
@@ -83,7 +111,7 @@ verschijnt vanzelf het volgende item, SampleTime.
 <figure><title>SampleTime.</title>
 <mediaobject id="pid-sampletime">
 <imageobject>
-<imagedata fileref="pid-sampletime.png" format="png">
+<imagedata fileref="pid-sampletime.png" format="png" scale="35">
 </imageobject>
 </mediaobject>
 </figure>
@@ -112,16 +140,16 @@ instellen als je sensor afwijkt (kan haast niet met een DS18B20) doordat je op
 een plaats meet die niet de juiste temperatuur van de mout aangeeft. Normaal is deze instelling
 niet nodig en kun je deze het beste op nul laten staan. Het bereik is -5&deg;C tot +5&deg;C in stappen
 van 0,1&deg;C. Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
-verschijnt vanzelf het volgende item, Heat in Boil.
+verschijnt vanzelf het volgende item, Kookvermogen.
 </para>
 </sect2>
 
 <sect2 id="setup-pid-heatboil">
-<title>Heat in Boil</title>
-<figure><title>Heat in Boil.</title>
+<title>Kookvermogen</title>
+<figure><title>Kookvermogen.</title>
 <mediaobject id="pid-heatinboil">
 <imageobject>
-<imagedata fileref="pid-heatinboil.png" format="png">
+<imagedata fileref="pid-heatinboil.png" format="png" scale="35">
 </imageobject>
 </mediaobject>
 </figure>
@@ -129,6 +157,24 @@ verschijnt vanzelf het volgende item, Heat in Boil.
 kun je wat zuiniger en rustiger koken indien je ketel dat toelaat.
 Tijdens het koken kun je dit nog bijstellen.
 Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
+verschijnt vanzelf het volgende item, HLT temp.
+</para>
+</sect2>
+
+<sect2 id="setup-pid-heatmash">
+<title>Mashvermogen</title>
+<figure><title>Mashvermogen.</title>
+<mediaobject id="pid-heatinmash">
+<imageobject>
+<imagedata fileref="pid-heatinmash.png" format="png" scale="35">
+</imageobject>
+</mediaobject>
+</figure>
+<para>Deze instelling is het maximale vermogen wat de ketel krijgt tijdens het maischen. 
+Indien je teveel vermogen beschikbaar hebt dan schiet je temperatuur alsnog door tijdens
+het opwarmen en kan er ook aanbranden onstaan. Een goede waarde is het vermogen wat je
+nodig hebt om 1&deg;C per minuut te verwarmen. Deze waarde kun je niet bijstellen tijdens
+het maischen. Als de gewenste waarde is ingesteld druk je op <command>Ok</command> en
 verschijnt vanzelf het volgende item, HLT temp.
 </para>
 </sect2>
@@ -299,7 +345,7 @@ In te stellen tussen 80&deg;C en 105&deg;C.
 <figure><title>PID Pijp.</title>
 <mediaobject id="unit-pidpipe">
 <imageobject>
-<imagedata fileref="unit-pidpipe.png" format="png">
+<imagedata fileref="unit-pidpipe.png" format="png" scale="35">
 </imageobject>
 </mediaobject>
 </figure>
@@ -309,46 +355,48 @@ Het beste kan deze aan staan zodat het wort niet kan afkoelen tijdens het spoele
 </para>
 </sect2>
 
-<sect2 id="setup-unit-skipadd">
-<title>Skip Toevoegen</title>
-<figure><title>Skip Toevoegen.</title>
-<mediaobject id="unit-skipadd">
+<sect2 id="setup-unit-askadd">
+<title>Vraag mout stort</title>
+<figure><title>Vraag Mout Stort.</title>
+<mediaobject id="unit-askadd">
 <imageobject>
-<imagedata fileref="unit-skipadd.png" format="png">
+<imagedata fileref="unit-askadd.png" format="png" scale="35">
 </imageobject>
 </mediaobject>
 </figure>
-<para>Overslaan van de vraag om de mout te storten. Zonder deze vraag
-zal het brouwen beginnen met maischen ook al is er geen mout gestort.
+<para>Vraag Mout Stort AAN of UIT. Als deze UIT staat, niet aan te bevelen,
+dan zal het systeem meteen met maischen beginnen zodra de inmaisch temperatuur
+is bereikt. Als deze AAN staat verschijnt de vraag om mout te storen en heb
+je de gelegenheid om dat te doen. 
 </para>
 </sect2>
 
-<sect2 id="setup-unit-skipremove">
-<title>Skip Verwijderen</title>
-<figure><title>Skip Verwijderen.</title>
-<mediaobject id="unit-skipremove">
+<sect2 id="setup-unit-askremove">
+<title>Vraag mout verwijderen</title>
+<figure><title>Vraag Mout Weg.</title>
+<mediaobject id="unit-askremove">
 <imageobject>
-<imagedata fileref="unit-skipremove.png" format="png">
+<imagedata fileref="unit-askremove.png" format="png" scale="35">
 </imageobject>
 </mediaobject>
 </figure>
-<para>Overslaan van de vraag om de mout te verwijderen aan het eind
+<para>Onderbreek het brouwen met de vraag om de mout te verwijderen aan het eind
 van het maischen. Zonder deze vraag zal worden begonnen met het koken
 ook al is de mout nog aanwezig.
 </para>
 </sect2>
 
-<sect2 id="setup-unit-skipiodone">
-<title>Skip Jodiumtest</title>
-<figure><title>Skip Jodiumtest.</title>
-<mediaobject id="unit-skipiodine">
+<sect2 id="setup-unit-askiodone">
+<title>Vraag Jodiumtest</title>
+<figure><title>Vraag Jodiumtest.</title>
+<mediaobject id="unit-askiodine">
 <imageobject>
-<imagedata fileref="unit-skipiodine.png" format="png">
+<imagedata fileref="unit-askiodine.png" format="png" scale="35">
 </imageobject>
 </mediaobject>
 </figure>
-<para>Overslaan van de vraag om de jodium test te doen. Deze vraag wordt
-gesteld na de laatste maisch stap en voor het uitmaischen.
+<para>Stel de vraag om de jodium test te doen aan het eind van het maischen.
+Deze vraag wordt gesteld na de laatste maisch stap en voor het uitmaischen.
 </para>
 </sect2>
 

@@ -16,6 +16,9 @@
 #endif
 #define  P0_manmlt       109
 #define  P0_manpump      110
+#if Distilling == true
+#define  P0_distilling   111
+#endif
 
 #define  P1_clear        200
 #define  P1_pBKwater     201
@@ -58,6 +61,9 @@
 #define  P3_UDxQ         420
 #if DebugErrors == true
 #define  P3_erase        421
+#endif
+#if Distilling == true
+#define  P3_UDBQ         422
 #endif
 
 #define  X6Y1_temp       501
@@ -228,7 +234,15 @@ void Prompt(int Pmpt) {
       lcd.print(F("   PUMP CONTROL    "));
 #endif
       return;
-
+#if Distilling == true
+    case P0_distilling:
+#if langNL == true
+      lcd.print(F("    DISTILLEREN     "));
+#else
+      lcd.print(F("    DISTILLATION    "));
+#endif
+      return;
+#endif
 
     case P1_clear:
       LCDSpace(18);
@@ -329,9 +343,17 @@ void Prompt(int Pmpt) {
       return;
     case P3_xMAS:
 #if langNL == true
+  #if Distilling == true
+      lcd.print(F("DIST HAND AUTO SETUP"));
+  #else
       lcd.print(F(" --  HAND AUTO SETUP"));
+  #endif
 #else
+  #if Distilling == true
+      lcd.print(F("DIST MAN  AUTO SETUP"));
+  #else
       lcd.print(F(" --  MAN  AUTO SETUP"));
+  #endif
 #endif
       return;
     case P3_xBPQ:
@@ -474,6 +496,11 @@ void Prompt(int Pmpt) {
     case P3_erase:
       lcd.print(F("Clear all:  Yes  No "));
       return;
+#endif
+#if Distilling == true
+    case P3_UDBQ:
+       lcd.print(F(" Op  Neer  KOOK STOP"));
+       return;
 #endif
 
     case X6Y1_temp:

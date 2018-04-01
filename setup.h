@@ -267,6 +267,9 @@ void set_PID(void) {
   editUint("PID kP"      , EM_PID_Kp, PID_Kp_max, PID_Kp_step, PID_Kp_div);
   editUint("PID kI"      , EM_PID_Ki, PID_Ki_max, PID_Ki_step, PID_Ki_div);
   editUint("PID kD"      , EM_PID_Kd, PID_Kd_max, PID_Kd_step, PID_Kd_div);
+#ifdef P_ON_M
+  editByte("PID Klassiek" , EM_P_ON_M, 1, 0, & displayOnOff);
+#endif
   editByte("SampleTime"  , EM_SampleTime, 20000 / 250, 1000 / 250, & displayMultiply250);
   editByte("Temp Offset" , EM_TempOffset, 100, 0, & displayTempShift50Divide10);
   editByte("KookVermogen", EM_BoilHeat, 100, 20, & displayPercentage);
@@ -278,6 +281,9 @@ void set_PID(void) {
   editUint("PID kP"      , EM_PID_Kp, PID_Kp_max, PID_Kp_step, PID_Kp_div);
   editUint("PID kI"      , EM_PID_Ki, PID_Ki_max, PID_Ki_step, PID_Ki_div);
   editUint("PID kD"      , EM_PID_Kd, PID_Kd_max, PID_Kd_step, PID_Kd_div);
+#ifdef P_ON_M
+  editByte("PID Classic" , EM_P_ON_M, 1, 0, & displayOnOff);
+#endif
   editByte("SampleTime"  , EM_SampleTime, 20000 / 250, 1000 / 250, & displayMultiply250);
   editByte("Temp Offset" , EM_TempOffset, 100, 0, & displayTempShift50Divide10);
   editByte("BoilPower"   , EM_BoilHeat, 100, 20, & displayPercentage);

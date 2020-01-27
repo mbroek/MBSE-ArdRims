@@ -1,0 +1,3013 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>MBSE ArdRims handleiding.</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"></HEAD
+><BODY
+CLASS="BOOK"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="BOOK"
+><A
+NAME="AEN1"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>MBSE ArdRims handleiding.</A
+></H1
+><H3
+CLASS="AUTHOR"
+><A
+NAME="AEN5"
+></A
+>Michiel Broek</H3
+><P
+CLASS="COPYRIGHT"
+>Copyright &copy; 2016-2018 M. Broek</P
+><SPAN
+CLASS="RELEASEINFO"
+>Version 0.2.7<BR></SPAN
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Inhoudsopgave</B
+></DT
+><DT
+>1. <A
+HREF="#INTRODUCTIE"
+>Introductie.</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="#WARNING"
+>Veiligheid.</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="#HOOFDMENU"
+>Het hoofdmenu.</A
+></DT
+><DT
+>3. <A
+HREF="#SETUP"
+>Het Setup hoofdmenu.</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="#SETUP-PID"
+>PID instellingen.</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="#SETUP-PID-P"
+>PID kP</A
+></DT
+><DT
+><A
+HREF="#SETUP-PID-I"
+>PID kI</A
+></DT
+><DT
+><A
+HREF="#SETUP-PID-D"
+>PID kD</A
+></DT
+><DT
+><A
+HREF="#SETUP-PID-KLASSIEK"
+>PID Klassiek</A
+></DT
+><DT
+><A
+HREF="#SETUP-PID-SAMPLETIME"
+>SampleTime</A
+></DT
+><DT
+><A
+HREF="#SETUP-PID-OFFSET"
+>Temp. Offset</A
+></DT
+><DT
+><A
+HREF="#SETUP-PID-HEATBOIL"
+>Kookvermogen</A
+></DT
+><DT
+><A
+HREF="#SETUP-PID-HEATMASH"
+>Mashvermogen</A
+></DT
+><DT
+><A
+HREF="#SETUP-PID-HLTTEMP"
+>HLT temperatuur</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="#SETUP-UNIT"
+>Unit instellingen.</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="#SETUP-UNIT-BOILTEMP"
+>Kook temperatuur</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-PUMPCYCLUS"
+>Pomp cyclus</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-PUMPREST"
+>Pomp rust</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-PUMPPWM"
+>Pomp langzaam</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-PUMPPREMASH"
+>Pomp Inmaischen</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-PUMPONMASH"
+>Pomp Maischen</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-PUMPMASHOUT"
+>Pomp Uitmaischen.</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-PUMPONBOIL"
+>Pomp Koken</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-PUMPSTOP"
+>Pomp Stop</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-PIDPIPE"
+>PID Pijp</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-ASKADD"
+>Vraag mout stort</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-ASKREMOVE"
+>Vraag mout verwijderen</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-ASKIODONE"
+>Vraag Jodiumtest</A
+></DT
+><DT
+><A
+HREF="#SETUP-UNIT-IODINETIME"
+>Jodium Tijd</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="#SETUP-MASH"
+>Maisch Programma.</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="#SETUP-MASHIN"
+>Maisch in</A
+></DT
+><DT
+><A
+HREF="#SETUP-MASH-1"
+>Maisch stap 1</A
+></DT
+><DT
+><A
+HREF="#SETUP-MASH-2"
+>Maisch stap 2, 3, 4, 5 en 6.</A
+></DT
+><DT
+><A
+HREF="#SETUP-MASHOUT"
+>Maisch uit</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="#SETUP-BOIL"
+>Kook Programma.</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="#SETUP-BOILTIME"
+>Koken</A
+></DT
+><DT
+><A
+HREF="#SETUP-NROFHOPS"
+>Aantal Hopgiften</A
+></DT
+><DT
+><A
+HREF="#SETUP-BOILCOOLING"
+>Koel Temp.</A
+></DT
+><DT
+><A
+HREF="#SETUP-BOILWHIRLPOOL"
+>Whirlpool</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="#SETUP-RECIPE"
+>Recepten beheer.</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="#SETUP-RECIPELOAD"
+>Recept laden</A
+></DT
+><DT
+><A
+HREF="#SETUP-RECIPESAVE"
+>Recept opslaan</A
+></DT
+><DT
+><A
+HREF="#SETUP-RECIPESAVEAS"
+>Recept opslaan als</A
+></DT
+><DT
+><A
+HREF="#SETUP-RECIPEREMOVE"
+>Recept wissen</A
+></DT
+><DT
+><A
+HREF="#SETUP-RECIPEINIT"
+>Recept init</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>4. <A
+HREF="#HANDBEDIENING"
+>Het Handbediening menu.</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="#MANUAL-HLT"
+>Handbediening heetwater.</A
+></DT
+><DT
+><A
+HREF="#MANUAL-MLT"
+>Kook bediening.</A
+></DT
+><DT
+><A
+HREF="#MANUAL-PUMP"
+>Pomp bediening.</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="#AUTO"
+>Het Automatisch menu.</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="CHAPTER"
+><HR><H1
+><A
+NAME="INTRODUCTIE"
+></A
+>Hoofdstuk 1. Introductie.</H1
+><P
+>Software voor een RIMS brouwsysteem, een brouwsysteem waarbij het
+maischen en koken in dezelfde pan gebeurt. De software is geschreven voor
+een Arduino NANO, maar werkt ook op onder andere een Arduino UNO.
+Tijdens het maischen zit de mout
+in een binnenpan met filterbodem. Een pompt haalt het gefilterde wort onder
+de binnenpan weg en pompt het terug boveop de mout in de binnenpan. Doordat
+het wort continue wordt rondgepompt is het al helder voor je gaat filteren.
+Het filteren gebeurt door de binnenpan op te takelen zodat die net boven het
+wort in de pan er onder komt. Op dat moment kun je de software al op koken
+zetten en tegelijk gaan spoelen.</P
+><P
+> De software regelt alle temperatuur stappen tijdens het maischen. Om
+de temperatuur goed te regelen wordt gebruik gemaakt van PID software. Deze
+PID software zorgt er voor dat het opwarmen zo geregeld wordt dat de temperatuur
+minimaal doorschiet. Het vermogen van de verwarming wordt hiervoor geregeld 
+door deze steeds in en uit te schakelen in het ritme van enkele seconden. 
+Dit is een vorm van PWM regelen welke met eenvoudige middelen te maken is.</P
+><P
+>De software is gebaseerd op de Open ArdBir software, een project
+wat niet meer bestaat. Deze software was heel rommelig geschreven en had
+een aantal mankementen. Er was geen mogenlijkheid om uit te breiden.
+Daarom had ik besloten de software opnieuw te schrijven. In eerste instantie 
+is geprobeerd zoveel mogenlijk de data opslag gelijk te houden met die van
+de oorspronkelijke software zodat je makkelijk kon overstappen. In de loop
+van de tijd is deze compatibiliteit steeds minder geworden.</P
+><P
+>Als hardware kunnen de oorspronkelijk borden gebruikt worden, maar
+ook borden die gemaakt zijn door Jelle Klinge voor het forum 
+<A
+HREF="http://www.hobbybrouwen.nl/forum/index.php/topic,30878.0.html"
+TARGET="_top"
+>Hobbybrouwen.nl</A
+>.
+In de source is in te stellen welke hardware je gebruikt.</P
+><DIV
+CLASS="SECT1"
+><HR><H2
+CLASS="SECT1"
+><A
+NAME="WARNING"
+>Veiligheid.</A
+></H2
+><P
+>Ook al brouw je met deze software automatisch, blijf toch bij het systeem om
+in te kunnen grijpen als er iets mis gaat. Er is geen beveiliging in de
+software om lekkage en fouten in de brouw installatie te detecteren.</P
+></DIV
+></DIV
+><DIV
+CLASS="CHAPTER"
+><HR><H1
+><A
+NAME="HOOFDMENU"
+></A
+>Hoofdstuk 2. Het hoofdmenu.</H1
+><P
+>Het hoofdmenu van MBSE ArdRims. De drie hoofdfuncties zijn van hier uit te kiezen.
+Zie figuur 2-1.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN27"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="hoofdmenu.png"></P
+></DIV
+><P
+><B
+>Figuur 2-1. Hoofdmenu</B
+></P
+></DIV
+><P
+></P
+><UL
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>--</B
+> brengt je naar een geheim menu (Lang vasthouden).</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>HAND</B
+> brengt je naar het handbediening menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>AUTO</B
+> brengt je naar het automatisch brouwen menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>SETUP</B
+> brengt je naar het setup/instellingen menu.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="CHAPTER"
+><HR><H1
+><A
+NAME="SETUP"
+></A
+>Hoofdstuk 3. Het Setup hoofdmenu.</H1
+><P
+>Zodra je het setup menu start kom je meteen bij de instellingen voor de PID.</P
+><DIV
+CLASS="SECT1"
+><HR><H2
+CLASS="SECT1"
+><A
+NAME="SETUP-PID"
+>PID instellingen.</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN50"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="pid.png"></P
+></DIV
+><P
+><B
+>Figuur 3-1. PID instellingen.</B
+></P
+></DIV
+><P
+></P
+><UL
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Neer</B
+> brengt je naar het Unit instellingen menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Terug</B
+> brengt je terug naar het hoofdmenu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Ok</B
+> brengt je naar de eerste PID instelling: PID kP.</P
+></LI
+></UL
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-PID-P"
+>PID kP</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN67"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="pid-kp.png"></P
+></DIV
+><P
+><B
+>Figuur 3-2. PID P parameter.</B
+></P
+></DIV
+><P
+>Dit is de proportionele waarde voor de PID. De waarde is in te stellen
+tussen 0 en 2048 in stappen van 0,03125.
+De <B
+CLASS="COMMAND"
+>Op</B
+> en <B
+CLASS="COMMAND"
+>Neer</B
+> toetsen hebben drie
+stap snelheden. Hoe langer je de toets vasthoud, hoe groter de stappen worden.
+De standaard waarde is 150,000. Als de gewenste waarde is ingesteld druk je op <B
+CLASS="COMMAND"
+>Ok</B
+> en
+verschijnt vanzelf het volgende item, PID kI.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-PID-I"
+>PID kI</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN78"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="pid-ki.png"></P
+></DIV
+><P
+><B
+>Figuur 3-3. PID I parameter.</B
+></P
+></DIV
+><P
+>Dit is de integrale waarde van de PID. De waarde is in te stellen tussen
+0 en 128 in stappen van 0,002. De <B
+CLASS="COMMAND"
+>Op</B
+> en <B
+CLASS="COMMAND"
+>Neer</B
+> toetsen hebben drie
+stap snelheden. Hoe langer je de toets vasthoud, hoe groter de stappen worden.
+De standaard waarde is 1,500. Dit is 1/100 van de PID kP waarde en is een goede startwaarde.
+Als de gewenste waarde is ingesteld druk je op <B
+CLASS="COMMAND"
+>Ok</B
+> en
+verschijnt vanzelf het volgende item, PID kD.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-PID-D"
+>PID kD</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN89"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="pid-kd.png"></P
+></DIV
+><P
+><B
+>Figuur 3-4. PID D parameter.</B
+></P
+></DIV
+><P
+>Dit is de deriviate waarde van de PID. De waarde is in te stellen tussen
+0 en 32768 in stappen van 0,5. De <B
+CLASS="COMMAND"
+>Op</B
+> en <B
+CLASS="COMMAND"
+>Neer</B
+> toetsen hebben drie
+stap snelheden. Hoe langer je de toets vasthoud, hoe groter de stappen worden.
+De standaard waarde is 15000,000. Dit is 100 maal de PID kP waarde en is een goede startwaarde.</P
+><P
+><I
+CLASS="EMPHASIS"
+>Let op:</I
+> er zijn twee manieren van werken met de PID, Klassiek UIT en AAN. De waarde zoals hierboven is
+goed voor Klassiek AAN. In de nieuwere Klassiek UIT instelling moet deze deriviate waarde anders ingesteld
+worden, op 1.000 of 1.500.</P
+><P
+>Als de gewenste waarde is ingesteld druk je op <B
+CLASS="COMMAND"
+>Ok</B
+> en
+verschijnt vanzelf het volgende item, PID Klassiek.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-PID-KLASSIEK"
+>PID Klassiek</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN103"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="pid-klassiek.png"></P
+></DIV
+><P
+><B
+>Figuur 3-5. PID Klassiek.</B
+></P
+></DIV
+><P
+>Sinds versie 0.2.7 is er een nieuwe manier om de PID te laten werken.
+Deze keuze is alleen zichtbaar als de software gecompileerd is met een 
+recente PID library.
+Deze nieuwe manier werkt beter voor trage systemen zoals een brouw installatie.
+Standaard staat het systeem ingesteld op Klassiek AAN. Wil je de nieuwe manier
+gebruiken, en die is aan te bevelen, dan moet je niet vergeten de PID D waarde te
+verlagen tot 1.000 of 1.500. Deze instelling is dan Klassiek UIT, modern dus.
+Als de gewenste waarde is ingesteld druk je op <B
+CLASS="COMMAND"
+>Ok</B
+> en
+verschijnt vanzelf het volgende item, Sampletime.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-PID-SAMPLETIME"
+>SampleTime</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN112"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="pid-sampletime.png"></P
+></DIV
+><P
+><B
+>Figuur 3-6. SampleTime.</B
+></P
+></DIV
+><P
+>Dit is de tijd in milliseconden dat de PID zijn berekening uitvoert. Deze
+staat standaard op 5000 mSec, dus 5 seconden. De waarde is in te stellen tussen 1 en
+20 seconden. Dit is tevens de snelheid waarmee de ketel geschakeld wordt. Met een instelling
+van 5000 en 40% berekend vermogen betekent dit dat de ketel 2000 mSec aan en
+3000 mSec uit is. Door de massa van het brouwwater en de elementen geeft dit
+een rustige regeling. Als de gewenste waarde is ingesteld druk je op <B
+CLASS="COMMAND"
+>Ok</B
+> en
+verschijnt vanzelf het volgende item, Temp Offset.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-PID-OFFSET"
+>Temp. Offset</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN121"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="pid-offset.png"></P
+></DIV
+><P
+><B
+>Figuur 3-7. Temp Offset.</B
+></P
+></DIV
+><P
+>Dit is de temperatuur offset die opgeteld of afgetrokken wordt van de gemeten
+waarde van de temperatuur sensor voor de maisch ketel. Hiermee kun je een correctie
+instellen als je sensor afwijkt (kan haast niet met een DS18B20) doordat je op
+een plaats meet die niet de juiste temperatuur van de mout aangeeft. Normaal is deze instelling
+niet nodig en kun je deze het beste op nul laten staan. Het bereik is -5°C tot +5°C in stappen
+van 0,1°C. Als de gewenste waarde is ingesteld druk je op <B
+CLASS="COMMAND"
+>Ok</B
+> en
+verschijnt vanzelf het volgende item, Kookvermogen.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-PID-HEATBOIL"
+>Kookvermogen</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN130"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="pid-heatinboil.png"></P
+></DIV
+><P
+><B
+>Figuur 3-8. Kookvermogen.</B
+></P
+></DIV
+><P
+>Deze instelling is het vermogen wat de ketel krijgt zodra het wort kookt. Hierdoor
+kun je wat zuiniger en rustiger koken indien je ketel dat toelaat.
+Tijdens het koken kun je dit nog bijstellen.
+Als de gewenste waarde is ingesteld druk je op <B
+CLASS="COMMAND"
+>Ok</B
+> en
+verschijnt vanzelf het volgende item, HLT temp.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-PID-HEATMASH"
+>Mashvermogen</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN139"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="pid-heatinmash.png"></P
+></DIV
+><P
+><B
+>Figuur 3-9. Mashvermogen.</B
+></P
+></DIV
+><P
+>Deze instelling is het maximale vermogen wat de ketel krijgt tijdens het maischen. 
+Indien je teveel vermogen beschikbaar hebt dan schiet je temperatuur alsnog door tijdens
+het opwarmen en kan er ook aanbranden onstaan. Een goede waarde is het vermogen wat je
+nodig hebt om 1°C per minuut te verwarmen. Deze waarde kun je niet bijstellen tijdens
+het maischen. Als de gewenste waarde is ingesteld druk je op <B
+CLASS="COMMAND"
+>Ok</B
+> en
+verschijnt vanzelf het volgende item, HLT temp.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-PID-HLTTEMP"
+>HLT temperatuur</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN148"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="pid-hlttemp.png"></P
+></DIV
+><P
+><B
+>Figuur 3-10. HLT temperatuur.</B
+></P
+></DIV
+><P
+><I
+CLASS="EMPHASIS"
+>Dit menu item verschijnt alleen als de source gecompileerd is met USE_HLT true.</I
+>
+Dit is de standaard waarde voor de ketel met spoelwater (Hot Liquer Tank). In te stellen
+tussen 0°C en 95°C.
+Als de gewenste waarde is ingesteld druk je op <B
+CLASS="COMMAND"
+>Ok</B
+> en
+verschijnt vanzelf het PID menu.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H2
+CLASS="SECT1"
+><A
+NAME="SETUP-UNIT"
+>Unit instellingen.</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN158"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit.png"></P
+></DIV
+><P
+><B
+>Figuur 3-11. Unit Instellingen.</B
+></P
+></DIV
+><P
+></P
+><UL
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Op</B
+> brengt je naar het PID instellingen menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Neer</B
+> brengt je naar het Maisch Programma menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Terug</B
+> brengt je terug naar het hoofdmenu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Ok</B
+> brengt je naar de eerste Unit instelling: Kook Temperatuur.</P
+></LI
+></UL
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-BOILTEMP"
+>Kook temperatuur</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN178"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-boiltemp.png"></P
+></DIV
+><P
+><B
+>Figuur 3-12. Kook Temperatuur.</B
+></P
+></DIV
+><P
+>Zodra deze temperatuur is bereikt start de timer voor het koken. Deze dus
+niet op een waarde zetten die niet te bereiken is. 99°C is mooi in ons vlakke land,
+in de bergen heb je een lagere waarde nodig. Onder deze temeratuur krijgt de ketel 100%
+vermogen, zodra de ingestelde temperatuur is bereikt of hoger is dan kan dit vermogen
+lager zijn. Standaard is dat de waarde die onder <B
+CLASS="COMMAND"
+>PID - Heat in Boil staat</B
+>.
+Tijdens het brouwen kun je deze waardes ook aanpassen.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-PUMPCYCLUS"
+>Pomp cyclus</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN187"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-pumpcyclus.png"></P
+></DIV
+><P
+><B
+>Figuur 3-13. Pomp Cyclus.</B
+></P
+></DIV
+><P
+>Dit is de tijd in minuten dat de pomp aan staat tijdens het maischen.
+De waarde kan ingesteld worden tussen 5 en 15 minuten. Deze tijd werkt
+samen met de volgende <B
+CLASS="COMMAND"
+>Pomp Rust</B
+> instelling.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-PUMPREST"
+>Pomp rust</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN196"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-pumprest.png"></P
+></DIV
+><P
+><B
+>Figuur 3-14. Pomp Rust.</B
+></P
+></DIV
+><P
+>Dit is de tijd in minuten dat de pomp niet draait. De waarde kan worden
+ingesteld tussen 0 en 5 minuten. Als je deze op 0 zet dan zal de pomp altijd
+draaien. Deze instelling werkt samen met de vorige <B
+CLASS="COMMAND"
+>Pomp Cyclus</B
+>
+instelling.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-PUMPPWM"
+>Pomp langzaam</A
+></H3
+><P
+><I
+CLASS="EMPHASIS"
+>Dit menu item verschijnt alleen als de source gecompileerd is met USE_PumpPWM true.</I
+>
+Dit is het percentage vermogen wat de pomp krijgt tijdens de pomp rust. Dit kan alleen gebruikt
+worden indien de pomp electronisch gestuurd wordt. In te stellen tussen 10 en 100%.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-PUMPPREMASH"
+>Pomp Inmaischen</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN209"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-pumpmashin.png"></P
+></DIV
+><P
+><B
+>Figuur 3-15. Pomp Inmaischen.</B
+></P
+></DIV
+><P
+>Wordt de pomp gebruikt tijdens het inmaischen of niet.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-PUMPONMASH"
+>Pomp Maischen</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN217"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-pumponmash.png"></P
+></DIV
+><P
+><B
+>Figuur 3-16. Pomp Maischen.</B
+></P
+></DIV
+><P
+>Wordt de pomp gebruikt tijdens het maischen of niet.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-PUMPMASHOUT"
+>Pomp Uitmaischen.</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN225"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-pumpmashout.png"></P
+></DIV
+><P
+><B
+>Figuur 3-17. Pomp Uitmaischen.</B
+></P
+></DIV
+><P
+>Wordt de pomp gebruikt tijdens het uitmaischen of niet.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-PUMPONBOIL"
+>Pomp Koken</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN233"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-pumponboil.png"></P
+></DIV
+><P
+><B
+>Figuur 3-18. Pomp Koken.</B
+></P
+></DIV
+><P
+>Wordt de pomp gebruikt tijdens het koken of niet.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-PUMPSTOP"
+>Pomp Stop</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN241"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-pumpstop.png"></P
+></DIV
+><P
+><B
+>Figuur 3-19. Pomp Stop.</B
+></P
+></DIV
+><P
+>Dit is de temperatuur waar boven de pomp niet meer aan gaat.
+Niet alle pompen zijn geschikt om bij hoge temperaturen te pompen en
+kunnen beschadigen door luchtbellen die ontstaan. Deze instelling werkt
+bij alle brouwstappen waarbij de temperatuur boven deze waarde komt.
+In te stellen tussen 80°C en 105°C.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-PIDPIPE"
+>PID Pijp</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN249"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-pidpipe.png"></P
+></DIV
+><P
+><B
+>Figuur 3-20. PID Pijp.</B
+></P
+></DIV
+><P
+>Een beetje vage omschrijving, maar dit geeft aan of de PID door moet
+blijven werken tijdens het optakelen van de binnenpan ook wel moutpijp genoemd.
+Het beste kan deze aan staan zodat het wort niet kan afkoelen tijdens het spoelen.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-ASKADD"
+>Vraag mout stort</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN257"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-askadd.png"></P
+></DIV
+><P
+><B
+>Figuur 3-21. Vraag Mout Stort.</B
+></P
+></DIV
+><P
+>Vraag Mout Stort AAN of UIT. Als deze UIT staat, niet aan te bevelen,
+dan zal het systeem meteen met maischen beginnen zodra de inmaisch temperatuur
+is bereikt. Als deze AAN staat verschijnt de vraag om mout te storen en heb
+je de gelegenheid om dat te doen. </P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-ASKREMOVE"
+>Vraag mout verwijderen</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN265"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-askremove.png"></P
+></DIV
+><P
+><B
+>Figuur 3-22. Vraag Mout Weg.</B
+></P
+></DIV
+><P
+>Onderbreek het brouwen met de vraag om de mout te verwijderen aan het eind
+van het maischen. Zonder deze vraag zal worden begonnen met het koken
+ook al is de mout nog aanwezig.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-ASKIODONE"
+>Vraag Jodiumtest</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN273"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-askiodine.png"></P
+></DIV
+><P
+><B
+>Figuur 3-23. Vraag Jodiumtest.</B
+></P
+></DIV
+><P
+>Stel de vraag om de jodium test te doen aan het eind van het maischen.
+Deze vraag wordt gesteld na de laatste maisch stap en voor het uitmaischen.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-UNIT-IODINETIME"
+>Jodium Tijd</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN281"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="unit-iodinetime.png"></P
+></DIV
+><P
+><B
+>Figuur 3-24. Jodium Tijd.</B
+></P
+></DIV
+><P
+>De maximale tijd dat gewacht wordt op de jodium test indien deze niet overgeslagen
+wordt. Als de tijd verstreken is gaat het brouwen weer door, of als de gebruiker
+het zelf aangeeft gaat het brouwen direct door. In te stellen tussen 0 en 90 minuten.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H2
+CLASS="SECT1"
+><A
+NAME="SETUP-MASH"
+>Maisch Programma.</A
+></H2
+><P
+></P
+><UL
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Op</B
+> brengt je naar het Unit instellingen menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Neer</B
+> brengt je naar het Kook Programma menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Terug</B
+> brengt je terug naar het hoofdmenu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Ok</B
+> brengt je naar de eerste Maisch Programma stap: Maisch In.</P
+></LI
+></UL
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN302"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="mash.png"></P
+></DIV
+><P
+><B
+>Figuur 3-25. Maisch instellingen.</B
+></P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-MASHIN"
+>Maisch in</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN309"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="mash-mashin.png"></P
+></DIV
+><P
+><B
+>Figuur 3-26. Maisch in.</B
+></P
+></DIV
+><P
+>Hier stel je de inmaisch temperatuur in. Deze is altijd ietsje hoger dan
+de temperatuur van de eerste maisch stap. De juiste temperatuur kan berekend
+worden door de meeste brouw software. Meestal is dit 1 tot 2 graden warmer dan de
+temperatuur van de eerste maisch stap.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-MASH-1"
+>Maisch stap 1</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN317"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="mash-step1-1.png"></P
+></DIV
+><P
+><B
+>Figuur 3-27. Maisch stap 1.</B
+></P
+></DIV
+><P
+>Hier stel je de temperatuur en tijdsduur in van de eerste maisch stap. Deze stap
+is verplicht. De temperatuur is in te stellen tussen de maisch in temperatuur min 5°C
+en 75°C. Na het drukken van <B
+CLASS="COMMAND"
+>Ok</B
+> verschijnt het volgende scherm.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN324"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="mash-step1-2.png"></P
+></DIV
+><P
+><B
+>Figuur 3-28. Maisch stap 1.</B
+></P
+></DIV
+><P
+>De tijd is in te stellen tussen 1 en 140 minuten.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-MASH-2"
+>Maisch stap 2, 3, 4, 5 en 6.</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN332"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="mash-step2-1.png"></P
+></DIV
+><P
+><B
+>Figuur 3-29. Maisch stap 2.</B
+></P
+></DIV
+><P
+>Al deze stappen zijn optioneel. Eerst geef je aan met de derde toets
+of deze stap gebruikt zal gaan worden. Rechts op de derde regel staat Ja of Nee.
+Indien dat Ja is en op <B
+CLASS="COMMAND"
+>Ok</B
+> gedrukt wordt verschijnt het scherm voor de temperatuur.
+Indien het Nee is verschijnt de volgende stap.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN339"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="mash-step2-2.png"></P
+></DIV
+><P
+><B
+>Figuur 3-30. Maisch stap 2.</B
+></P
+></DIV
+><P
+>De temperatuur voor deze stap is in te stellen tussen de temperatuur van de voorgaande
+stap plus 1°C en 75°C. Je wordt dus gedwongen om steeds een hogere temperatuur
+te kiezen. Druk op <B
+CLASS="COMMAND"
+>Ok</B
+> om naar het volgende scherm te gaan.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN346"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="mash-step2-3.png"></P
+></DIV
+><P
+><B
+>Figuur 3-31. Maisch stap 2.</B
+></P
+></DIV
+><P
+>De tijd is in te stellen tussen 1 en 140 minuten. Na het drukken van
+<B
+CLASS="COMMAND"
+>Ok</B
+> verschijnt de volgende maisch stap.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-MASHOUT"
+>Maisch uit</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN355"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="mash-mashout-1.png"></P
+></DIV
+><P
+><B
+>Figuur 3-32. Maisch Uit.</B
+></P
+></DIV
+><P
+>Dit is een verplichte stap. Wil je niet uitmaischen stel deze stap dan in
+op dezelfde temperatuur als de vorige stap met een tijdsduur van 1 minuut. Deze
+stap is in te stellen vanaf de voorgaande stap temperatuur tot 85°C.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN361"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="mash-mashout-2.png"></P
+></DIV
+><P
+><B
+>Figuur 3-33. Maisch Uit.</B
+></P
+></DIV
+><P
+>De tijd is in te stellen tussen 1 en 140 minuten. Na het drukken van
+<B
+CLASS="COMMAND"
+>Ok</B
+> verschijnt het Maisch menu weer.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H2
+CLASS="SECT1"
+><A
+NAME="SETUP-BOIL"
+>Kook Programma.</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN370"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="boil.png"></P
+></DIV
+><P
+><B
+>Figuur 3-34. Koken.</B
+></P
+></DIV
+><P
+></P
+><UL
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Op</B
+> brengt je naar het Maisch Programma menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Neer</B
+> brengt je naar het Recepten Beheer menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Terug</B
+> brengt je terug naar het hoofdmenu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Ok</B
+> brengt je naar de eerste Kook Programma stap: Koken.</P
+></LI
+></UL
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-BOILTIME"
+>Koken</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN390"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="boil-boiltime.png"></P
+></DIV
+><P
+><B
+>Figuur 3-35. Koken.</B
+></P
+></DIV
+><P
+>Hier stel je de kooktjd in tussen 10 en 240 minuten.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-NROFHOPS"
+>Aantal Hopgiften</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN398"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="boil-nrofhops.png"></P
+></DIV
+><P
+><B
+>Figuur 3-36. Aantal hopgiften.</B
+></P
+></DIV
+><P
+>Hier stel je het aantal hopgiften in tijdens de kook periode. Tel ook andere
+giften hierbij zoals kruiden en gist voeding. Dit is niet noodzakelijk maar dit geeft
+een aantal waarschuwing tijdens het koken dat je "iets" moet toevoegen aan de kook.
+In te stellen tussen 0 en 10.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN404"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="boil-hop1.png"></P
+></DIV
+><P
+><B
+>Figuur 3-37. Hop 1.</B
+></P
+></DIV
+><P
+>De tijd van een hopgift. Het aantal schermen wat je moet invullen is afhankelijk van het aantal
+gekozen hopgiften. De tijd die je invult is de tijd voor het einde van de kook. Vul je 45 in
+dan zul je 45 minuten voor het einde van de kook een waarschuwing krijgen. De tijd die je kunt
+instellen ligt tussen die van de voorgaande hopgift (of totale kooktijd) en 0 minuten. De tijden voor
+alle hopgiften loopt af.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-BOILCOOLING"
+>Koel Temp.</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN412"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="boil-cooltemp.png"></P
+></DIV
+><P
+><B
+>Figuur 3-38. Koel Temp.</B
+></P
+></DIV
+><P
+>Dit is de uiteindelijk koel temperatuur voor gebruikers van inwendige koelers in de kook ketel. Hiermee
+wordt het verloop van het koelen gemeten en kan het koelen onderbroken worden voor een whirlpool.
+In te stellen tussen 10°C en 30°C.</P
+><P
+>Gebruikers van uitwendige koelers zoals platenkoelers hebben hier last van omdat het
+brouw programma nooit zal stoppen. Dit is dus een bug. Door tijdens het brouwen na de kook
+de vraag <B
+CLASS="COMMAND"
+>Start Koelen</B
+> met Nee te beantwoorden wordt het brouw programma
+geforceerd gestopt.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-BOILWHIRLPOOL"
+>Whirlpool</A
+></H3
+><P
+>Er zijn 4 mogelijkheden voor een whirlpool. De drie warme whirlpool instellingen zijn
+zo gemaakt dat de ketel bijverwarmd kan worden als de temperatuur te laag dreigt te worden.
+Hiervoor wordt de PID regeling gebruikt. Zie de volgende tabel:
+<DIV
+CLASS="TABLE"
+><A
+NAME="AEN423"
+></A
+><P
+><B
+>Tabel 3-1. Whirlpool overzicht</B
+></P
+><TABLE
+BORDER="1"
+BGCOLOR="#E0E0E0"
+CELLSPACING="0"
+CELLPADDING="4"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+>Naam</TH
+><TH
+>Temperatuur</TH
+><TH
+>PID setpoint</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>Whirlpool 93+</TD
+><TD
+>91°C .. 100°C</TD
+><TD
+>93°C</TD
+></TR
+><TR
+><TD
+>Whirlpool 71..77</TD
+><TD
+>71°C .. 77°C</TD
+><TD
+>74°C</TD
+></TR
+><TR
+><TD
+>Whirlpool 60..66</TD
+><TD
+>60°C .. 66°C</TD
+><TD
+>63°C</TD
+></TR
+><TR
+><TD
+>Whirlpool Koud</TD
+><TD
+>10°C .. 30°C</TD
+><TD
+>&nbsp;</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN451"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="boil-whirl9.png"></P
+></DIV
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="boil-whirl7.png"></P
+></DIV
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="boil-whirl6.png"></P
+></DIV
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="boil-whirl2.png"></P
+></DIV
+><P
+><B
+>Figuur 3-39. Whirlpool schermen.</B
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H2
+CLASS="SECT1"
+><A
+NAME="SETUP-RECIPE"
+>Recepten beheer.</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN467"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="recipe.png"></P
+></DIV
+><P
+><B
+>Figuur 3-40. Recepten.</B
+></P
+></DIV
+><P
+></P
+><UL
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Op</B
+> brengt je naar het Kook Programma menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Terug</B
+> brengt je terug naar het hoofdmenu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>Ok</B
+> brengt je naar de eerste Recepten Beheer menu: Recept Laden.</P
+></LI
+></UL
+><P
+>In het recepten beheer kunnen 10 recepten worden opgeslagen. Dit zijn alle gegevens die in de menus
+<B
+CLASS="COMMAND"
+>Maisch Programma</B
+> en <B
+CLASS="COMMAND"
+>Kook Programma</B
+> zijn ingesteld.</P
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-RECIPELOAD"
+>Recept laden</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN487"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="recipe-load-1.png"></P
+></DIV
+><P
+><B
+>Figuur 3-41. Recept laden.</B
+></P
+></DIV
+><P
+>Het laden van een opgeslagen recept. Als je op <B
+CLASS="COMMAND"
+>Ok</B
+>
+drukt kom je in het volgende menu om een opgeslagen recept te selecteren.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN494"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="recipe-load-2.png"></P
+></DIV
+><P
+><B
+>Figuur 3-42. Recept laden.</B
+></P
+></DIV
+><P
+>Met de <B
+CLASS="COMMAND"
+>Op</B
+> en <B
+CLASS="COMMAND"
+>Neer</B
+> toetsen kun je kiezen
+uit een van de opgeslagen recepten. Druk op <B
+CLASS="COMMAND"
+>Ok</B
+> om het
+recept te laden, of druk op <B
+CLASS="COMMAND"
+>Terug</B
+> om terug te keren naar het menu.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN504"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="recipe-load-3.png"></P
+></DIV
+><P
+><B
+>Figuur 3-43. Recept laden.</B
+></P
+></DIV
+><P
+>Het recept wordt geladen.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-RECIPESAVE"
+>Recept opslaan</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN512"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="recipe-save-1.png"></P
+></DIV
+><P
+><B
+>Figuur 3-44. Recept opslaan.</B
+></P
+></DIV
+><P
+>Als je iets in een recept in <B
+CLASS="COMMAND"
+>Maisch Programma</B
+> of <B
+CLASS="COMMAND"
+>Kook Programma</B
+>
+verandert hebt aan een recept kun je die wijzigingen weer opslaan.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN520"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="recipe-save-2.png"></P
+></DIV
+><P
+><B
+>Figuur 3-45. Recept opslaan.</B
+></P
+></DIV
+><P
+>Standaard staat het recept wat het laatst is gebruikt voor geselecteerd. Maar met de
+<B
+CLASS="COMMAND"
+>Op</B
+> en <B
+CLASS="COMMAND"
+>Neer</B
+> toetsen kun je een ander recept kiezen
+om te overschrijven. Zodra je op <B
+CLASS="COMMAND"
+>Ok</B
+> drukt wordt het bestaande recept
+overschreven.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN529"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="recipe-save-3.png"></P
+></DIV
+><P
+><B
+>Figuur 3-46. Recept opslaan.</B
+></P
+></DIV
+><P
+>Nog even voor de zekerheid, opslaan?</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-RECIPESAVEAS"
+>Recept opslaan als</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN537"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="recipe-saveas-1.png"></P
+></DIV
+><P
+><B
+>Figuur 3-47. Recept opslaan als.</B
+></P
+></DIV
+><P
+>Voor het opslaan van een nieuw recept. Dit werkt alleen als er minder
+dan 10 recepten in het geheugen staan. Eventueel ruimte maken met het menu
+<B
+CLASS="COMMAND"
+>Recept Wissen</B
+>.</P
+><P
+>TODO: nog verder beschrijven maar het komt er op neer dat je met de pijltjes toetsen
+de naam moet maken, letter voor letter (of cijfer) en dan opslaan. Het recept kan pas
+worden opgeslagen als aan het einde van de naam voldoende spaties zijn toegevoegd of
+dat de naam zo lang is dat de naambuffer vol is.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-RECIPEREMOVE"
+>Recept wissen</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN547"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="recipe-erase.png"></P
+></DIV
+><P
+><B
+>Figuur 3-48. Recept wissen.</B
+></P
+></DIV
+><P
+>Om ruimte te maken voor een nieuw recept is het soms nodig een oud recept te
+verwijderen. Kies het recept om te verwijderen en druk op <B
+CLASS="COMMAND"
+>Ok</B
+>.
+Daarna wordt nog even gevraagd of je dat recept echt wilt verwijderen.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><HR><H3
+CLASS="SECT2"
+><A
+NAME="SETUP-RECIPEINIT"
+>Recept init</A
+></H3
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN556"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="recipe-init-1.png"></P
+></DIV
+><P
+><B
+>Figuur 3-49. Recept init.</B
+></P
+></DIV
+><P
+>Deze optie wist in een keer alle recepten en zet het recepten beheer terug in
+de oorspronkelijke fabrieks instelling.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN562"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="recipe-init-2.png"></P
+></DIV
+><P
+><B
+>Figuur 3-50. Recept init.</B
+></P
+></DIV
+><P
+>Voor de zekerheid, <B
+CLASS="COMMAND"
+>Ja</B
+> wist al je recepten.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="CHAPTER"
+><HR><H1
+><A
+NAME="HANDBEDIENING"
+></A
+>Hoofdstuk 4. Het Handbediening menu.</H1
+><P
+>In dit menu kun je de brouw installatie geheel met de hand bedienen.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN572"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="handbediening-1.png"></P
+></DIV
+><P
+><B
+>Figuur 4-1. Handbediening.</B
+></P
+></DIV
+><P
+>Om ongelukken te voorkomen moet je bevestigen dat er water in je maischketel zit.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN578"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="handbediening-2.png"></P
+></DIV
+><P
+><B
+>Figuur 4-2. Handbediening.</B
+></P
+></DIV
+><P
+><I
+CLASS="EMPHASIS"
+>Dit menu item verschijnt alleen als de source gecompileerd is met USE_HLT true.</I
+>
+Vervolgens moet je bevestigen dat ook de spoelwater ketel gevuld is.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN585"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="handbediening-3.png"></P
+></DIV
+><P
+><B
+>Figuur 4-3. Handbediening.</B
+></P
+></DIV
+><P
+>Tenslotte verschijnt het handbediening menu.</P
+><P
+></P
+><UL
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>HWAT</B
+> brengt je naar het HeetWATer ketel menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>KOOK</B
+> brengt je naar het KOOK ketel menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>POMP</B
+> brengt je naar het POMP menu.</P
+></LI
+><LI
+><P
+>De toets <B
+CLASS="COMMAND"
+>STOP</B
+> brengt je terug naar hoofdmenu en schakelt alles uit.</P
+></LI
+></UL
+><DIV
+CLASS="SECT1"
+><HR><H2
+CLASS="SECT1"
+><A
+NAME="MANUAL-HLT"
+>Handbediening heetwater.</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN606"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="handbediening-hlt-1.png"></P
+></DIV
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="handbediening-hlt-2.png"></P
+></DIV
+><P
+><B
+>Figuur 4-4. Heetwater ketel.</B
+></P
+></DIV
+><P
+>Met de <B
+CLASS="COMMAND"
+>Op</B
+> en <B
+CLASS="COMMAND"
+>Neer</B
+> toetsen kan
+de doel temperatuur ingesteld worden. Met de <B
+CLASS="COMMAND"
+>Aan</B
+>/<B
+CLASS="COMMAND"
+>Uit</B
+> toets
+kan de verwarming aan en uit gezet worden.
+Als de doel temperatuur bereikt is klinken er drie piepjes. Druk je nu op de <B
+CLASS="COMMAND"
+>Op</B
+> toets
+en houd je die even vast dan wordt deze waarschuwing gereset, er is dan een nieuwe doel temperatuur ingesteld.
+Zodra dit gebeurt klinkt er een korte piep.</P
+><P
+>Met de <B
+CLASS="COMMAND"
+>Terug</B
+> toets ga je terug naar het handbediening menu. Als de verwarming aan staat
+blijft die aan en de temperatuur regeling blijft werken.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H2
+CLASS="SECT1"
+><A
+NAME="MANUAL-MLT"
+>Kook bediening.</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN624"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="handbediening-mlt-1.png"></P
+></DIV
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="handbediening-mlt-2.png"></P
+></DIV
+><P
+><B
+>Figuur 4-5. Kook ketel.</B
+></P
+></DIV
+><P
+>Met de <B
+CLASS="COMMAND"
+>Op</B
+> en <B
+CLASS="COMMAND"
+>Neer</B
+> toetsen kan
+de doel temperatuur ingesteld worden. Met de <B
+CLASS="COMMAND"
+>Aan</B
+>/<B
+CLASS="COMMAND"
+>Uit</B
+> toets
+kan de verwarming aan en uit gezet worden.
+Als de doel temperatuur bereikt is klinken er drie piepjes. Druk je nu op de <B
+CLASS="COMMAND"
+>Op</B
+> toets
+en houd je die even vast dan wordt deze waarschuwing gereset, er is dan een nieuwe doel temperatuur ingesteld.
+Zodra dit gebeurt klinkt er een korte piep.</P
+><P
+>Rechts op de derde regel zie je de waarde van de PWM regeling, het vermogen voor de verwarming. De
+verwarming wordt hier door de PID gestuurd.
+Met de <B
+CLASS="COMMAND"
+>Terug</B
+> toets ga je terug naar het handbediening menu. Als de verwarming aan staat
+blijft die aan en de temperatuur regeling blijft werken.</P
+></DIV
+><DIV
+CLASS="SECT1"
+><HR><H2
+CLASS="SECT1"
+><A
+NAME="MANUAL-PUMP"
+>Pomp bediening.</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN642"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="handbediening-pump-1.png"></P
+></DIV
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="handbediening-pump-2.png"></P
+></DIV
+><P
+><B
+>Figuur 4-6. Pomp.</B
+></P
+></DIV
+><P
+>Met de <B
+CLASS="COMMAND"
+>Aan</B
+>/<B
+CLASS="COMMAND"
+>Uit</B
+> toets
+kan de pomp aan en uit gezet worden.
+Met de <B
+CLASS="COMMAND"
+>Terug</B
+> toets ga je terug naar het handbediening menu. Als de pomp aan staat
+blijft die aan staan.</P
+></DIV
+></DIV
+><DIV
+CLASS="CHAPTER"
+><HR><H1
+><A
+NAME="AUTO"
+></A
+>Hoofdstuk 5. Het Automatisch menu.</H1
+><P
+>Dit is het menu wat automatisch de brouw installatie bestuurd. In grote stappen
+betekend dat opwarmen, maischen op de juiste temperaturen, koken, koelen en eventueel 
+whirlpools. Alles moet van te voren goed zijn ingesteld en je recept moet in de 
+setup ingevoerd zijn bij <B
+CLASS="COMMAND"
+>Maisch Programma</B
+> en <B
+CLASS="COMMAND"
+>Kook Programma</B
+>.</P
+><P
+>Zodra je gaat beginnen moet alles aangesloten zijn en werken. Eventueel kun je met
+de handbediening alles nog even kontroleren.</P
+><P
+>Om ongelukken te voorkomen moet je bevestigen dat er water in je maischketel zit.
+Als je <B
+CLASS="COMMAND"
+>Nee</B
+> kiest wordt het brouwen meteen afgebroken.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN662"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-1.png"></P
+></DIV
+><P
+><B
+>Figuur 5-1. Maischwater aanwezig?</B
+></P
+></DIV
+><P
+><I
+CLASS="EMPHASIS"
+>Dit menu item verschijnt alleen als de source gecompileerd is met USE_HLT true.</I
+>
+Vervolgens moet je bevestigen dat ook de spoelwater ketel gevuld is.
+Als je <B
+CLASS="COMMAND"
+>Nee</B
+> kiest wordt het brouwen nu niet afgebroken maar wordt de
+heetwater ketel niet gebruikt tijdens deze sessie. Je kunt dit dus doen als je wilt brouwen zonder te spoelen.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN670"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-2.png"></P
+></DIV
+><P
+><B
+>Figuur 5-2. Spoelwater aanwezig?</B
+></P
+></DIV
+><P
+>Nu begint het brouwen, allereerst wordt de pomp ontlucht voor zover dat nodig is.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN676"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-prime.png"></P
+></DIV
+><P
+><B
+>Figuur 5-3. Pomp ontluchten.</B
+></P
+></DIV
+><P
+>De installatie wordt nu voor verwarmt. Dit gebeurt op vol vermogen zonder enige
+slimme PID regeling. Maar de doel temperaturen zijn wel 10 graden lager dan de
+werkelijke start temperaturen. Een overshoot is hier dan ook niet erg.
+Indien er ook een heetwater ketel is wordt eerst de kook ketel op temperatuur
+gebracht en daarna de heetwater ketel.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN682"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-opwarmen.png"></P
+></DIV
+><P
+><B
+>Figuur 5-4. Opwarmen.</B
+></P
+></DIV
+><P
+>Na het voorverwarmen wordt de kook ketel verder verwarmt met de PID regeling,
+hierdoor zal de temperatuur voorzichtig op de juiste waarde gebracht worden.
+Dit is de maisch in temperatuur.
+In de tijd dat de kook ketel niet gestuurd wordt, wordt eventueel de heetwater
+ketel verder opgewarmd.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN688"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-maischin.png"></P
+></DIV
+><P
+><B
+>Figuur 5-5. Inmaischen.</B
+></P
+></DIV
+><P
+>Zodra de inmaisch temperatuur is bereikt zal het systeem vragen om de
+mout te storten. Dit kan afgezet worden in de setup. Zolang niet op <B
+CLASS="COMMAND"
+>Ja</B
+>
+gedrukt is kun je de mout storten. De pomp is dan ook uit om te voorkomen dat het
+een rommel wordt. Zodra de mout gestort is druk je op <B
+CLASS="COMMAND"
+>Ja</B
+>.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN696"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-storten.png"></P
+></DIV
+><P
+><B
+>Figuur 5-6. Mout storten.</B
+></P
+></DIV
+><P
+>Na het inmaischen, maisch stap 1.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN702"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-step1-1.png"></P
+></DIV
+><P
+><B
+>Figuur 5-7. Maisch stap 1.</B
+></P
+></DIV
+><P
+>De temperatuur is bereikt, de timer loopt voor de resterende tijd
+in deze maisch stap.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN708"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-step1-2.png"></P
+></DIV
+><P
+><B
+>Figuur 5-8. Maisch stap 1, rust.</B
+></P
+></DIV
+><P
+>Na stap 1 opwarmen voor maisch stap 2. Het doel is nu 72°C.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN714"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-step2-1.png"></P
+></DIV
+><P
+><B
+>Figuur 5-9. Maisch stap 2, opwarmen.</B
+></P
+></DIV
+><P
+>De temperatuur is bereikt, de timer loopt voor de resterende rusttijd.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN720"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-step2-2.png"></P
+></DIV
+><P
+><B
+>Figuur 5-10. Maisch stap 2, rust.</B
+></P
+></DIV
+><P
+>Na afloop van de rusttijd van de laatste maisch stap komt het scherm om
+de jodium proef te doen. Dit is uit te zetten in de setup. Als de proef goed is druk je
+op <B
+CLASS="COMMAND"
+>Ok</B
+>. Zo niet wacht je gewoon en het maischen gaat gewoon door.
+Wel heb je elke minuut een geluidsignaal.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN727"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-iodine.png"></P
+></DIV
+><P
+><B
+>Figuur 5-11. Jodium proef.</B
+></P
+></DIV
+><P
+>Na de jodium proef opwarmen om uit te maischen. Deze stap kan niet overgeslagen worden,
+wel kun je in de setup de temperatuur gelijk zetten met de vorige stap en de tijd op 1 minuut.
+Dat is dan effectief hetzelfde als niet uitmaischen.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN733"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-mashout-1.png"></P
+></DIV
+><P
+><B
+>Figuur 5-12. Uitmaischen.</B
+></P
+></DIV
+><P
+>Na het uitmaischen wordt gevraagd de mout te verwijderen. Als de moutkorf boven
+de pan hangt kun je in principe al <B
+CLASS="COMMAND"
+>Ja</B
+> indrukken om het koken te starten.
+Ondertussen kan de korf uitlekken en kun je spoelen.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN740"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-remove.png"></P
+></DIV
+><P
+><B
+>Figuur 5-13. Mout verwijderen.</B
+></P
+></DIV
+><P
+>Opwarmen voor de kook gebeurt zonder PID regeling, het is gewoon 100% vermogen tot de kook
+temperatuur. Met de <B
+CLASS="COMMAND"
+>Op</B
+> en <B
+CLASS="COMMAND"
+>Neer</B
+> toetsen kun je de kook temperatuur
+veranderen. Het is verstandig deze iets lager dan de echte kook temperatuur te houden. 
+De kook timer gaat pas lopen als deze temperatuur bereikt is.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN748"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-koken-1.png"></P
+></DIV
+><P
+><B
+>Figuur 5-14. Koken.</B
+></P
+></DIV
+><P
+>Zodra de ingestelde kook temperatuur bereikt is kun je minder vermogen naar de kook ketel
+sturen. In dit scherm staat het op 40%. Met de <B
+CLASS="COMMAND"
+>Op</B
+> en <B
+CLASS="COMMAND"
+>Neer</B
+> 
+toetsen kun je dit aanpassen zodat je een mooie kook hebt. De PWM aanduiding wordt afgewisseld
+met de kook timer. Indien je geen heetwater ketel hebt zijn de PWM en timer tegelijk zichtbaar.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN756"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-koken-2.png"></P
+></DIV
+><P
+><B
+>Figuur 5-15. Koken.</B
+></P
+></DIV
+><P
+>Als het tijd is om hop of kruiden toe te voegen klinkt er een geluidsignaal (SOS) en staat er 
+een melding op het scherm.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN762"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-hop1.png"></P
+></DIV
+><P
+><B
+>Figuur 5-16. Hop toevoegen.</B
+></P
+></DIV
+><P
+>Als het koken klaar is wordt start koelen gevraagd. Gebruikers van uitwendige koelers kunnen hier
+het beste <B
+CLASS="COMMAND"
+>Nee</B
+> drukken, het brouwen wordt dan gestopt. Gebruikers van dompelkoelers
+kiezen hier <B
+CLASS="COMMAND"
+>Ja</B
+> en beginnen met koelen.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN770"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-startkoelen.png"></P
+></DIV
+><P
+><B
+>Figuur 5-17. Start koelen.</B
+></P
+></DIV
+><P
+>Het koelen is zichtbaar op het display. Zodra de temperatuur beneden de waarde
+komt dat de pomp gebruikt kan worden wordt de <B
+CLASS="COMMAND"
+>Pomp</B
+> toets ook
+bruikbaar. De pomp kan dan handmatig aangezet worden.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN777"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-koelen-1.png"></P
+></DIV
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-koelen-2.png"></P
+></DIV
+><P
+><B
+>Figuur 5-18. Koelen.</B
+></P
+></DIV
+><P
+>Indien er een whirlpool is ingesteld wordt het koelen onderbroken om de
+gekozen whirlpool te doen.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN786"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-whirlpool-1.png"></P
+></DIV
+><P
+><B
+>Figuur 5-19. Start whirlpool.</B
+></P
+></DIV
+><P
+>Hier kun je de whirlpool tijd nog veranderen</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN792"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-whirlpool-2.png"></P
+></DIV
+><P
+><B
+>Figuur 5-20. Whirlpool tijd.</B
+></P
+></DIV
+><P
+>Hier wordt de whirlpool gedaan met behulp van de pomp. Bij deze
+whirlpool wordt bijgewarmd indien de temperatuur onder de 74°C dreigt te komen.
+Op deze manier kun je rustig een uur een whirlpool doen zonder dat de temperatuur te laag wordt.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN798"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-whirlpool-3.png"></P
+></DIV
+><P
+><B
+>Figuur 5-21. Whirlool.</B
+></P
+></DIV
+><P
+>Na de whirlpool gaan we verder met koelen.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN804"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-whirlpool-4.png"></P
+></DIV
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-koelen-3.png"></P
+></DIV
+><P
+><B
+>Figuur 5-22. Start koelen.</B
+></P
+></DIV
+><P
+>Zodra de koeltemperatuur is bereikt is het brouwen klaar.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN813"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-klaar-1.png"></P
+></DIV
+><P
+><B
+>Figuur 5-23. Brouwen is klaar.</B
+></P
+></DIV
+><P
+>En terug in het hoofdmenu.</P
+><DIV
+CLASS="FIGURE"
+><A
+NAME="AEN819"
+></A
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="auto-klaar-2.png"></P
+></DIV
+><P
+><B
+>Figuur 5-24. Hoofdmenu.</B
+></P
+></DIV
+></DIV
+></DIV
+></BODY
+></HTML
+>

@@ -78,9 +78,11 @@
 #define  X11Y2_timer     508
 
 
-#if USE_HLT == true
+#if (USE_HLT == true || TempVapor == true)
 #define  X6Y2_temp       509
 #define  X1Y2_temp       510
+#endif
+#if USE_HLT == true
 #define  X1Y2_setpoint   511
 #define  X11Y2_setpoint  512
 #endif
@@ -544,7 +546,7 @@ void Prompt(int Pmpt) {
       (TimeUp) ? TimerShow(TimeSpent, 11, 2) : TimerShow(TimeLeft, 11, 2);
       return;
 
-#if USE_HLT == true
+#if (USE_HLT == true || TempVapor == true)
     case X6Y2_temp:
     case X1Y2_temp:
       if (Pmpt == X6Y2_temp)
@@ -555,7 +557,9 @@ void Prompt(int Pmpt) {
       lcd.write((byte)0);
       lcd.write(32);
       return;
+#endif
 
+#if USE_HLT == true
     case X11Y2_setpoint:
     case X1Y2_setpoint:
       (Pmpt == X11Y2_setpoint) ? lcd.setCursor(11, 2) : lcd.setCursor(1, 2);

@@ -29,8 +29,10 @@
 #define Silent          false       // No beeps (during development).
 /*
    Distilling activates code to control distillation with a GF.
+   TempVapor is a second temperature sensor with only a display function.
 */
 #define Distilling      false       // Distillation
+#define TempVapor       false       // Vapor temperature display
 /*
    USE_PumpPWM is for electronic regulated pumps without relays. Pump rest is slow, cooling is slow,
    else full speed.
@@ -79,16 +81,16 @@ const byte SensorMLTPin =  8;
 const byte SensorMLTPin =  7;
 #elif PCBType == 5
 const byte SensorMLTPin =  7;
-#if USE_HLT == true
+#if (USE_HLT == true || TempVapor == true)
 // Sensor for sparge water.
 const byte SensorHLTPin = 11;
-#endif // USE_HLT
+#endif // USE_HLT/TempVapor
 #elif PCBType == 6
 const byte SensorMLTPin =  7;
-#if USE_HLT == true
+#if (USE_HLT == true || TempVapor == true)
 // Sensor for sparge water.
 const byte SensorHLTPin = 10; // Pin 13 does not work. Don't know why. Hardware issue? (Chipmunk03)
-#endif // USE_HLT
+#endif // USE_HLT/TempVapor
 #endif // PCBType
 #endif // USE_DS18020
 
@@ -152,7 +154,7 @@ const byte SensorHLTPin = 10; // Pin 13 does not work. Don't know why. Hardware 
 
 #if USE_DS18020 == true
 OneWire dsm(SensorMLTPin);
-#if USE_HLT == true
+#if (USE_HLT == true || TempVapor == true)
 OneWire dsh(SensorHLTPin);
 #endif
 #endif
@@ -218,7 +220,7 @@ unsigned long FakeHeatLastInMS;          // in milliseconds.
 
 #if USE_DS18020 == true
 boolean ConvMLT_start = false;
-#if USE_HLT == true
+#if (USE_HLT == true || TempVapor == true)
 boolean ConvHLT_start = false;
 #endif
 #endif
@@ -260,7 +262,7 @@ float   Temp_MLT = 0.0;
 #endif
 float   boilStageTemp;
 float   stageTemp;
-#if USE_HLT == true
+#if (USE_HLT == true || TempVapor == true)
 #if FakeHeating == true
 float   Temp_HLT = 18.70;
 float   Fake_HLT = 18.70;
@@ -423,7 +425,7 @@ void Temperature() {
 #if USE_DS18020 == true
   ReadOwSensor(dsm, ConvMLT_start, Temp_MLT, true);
 
-#if USE_HLT == true
+#if (USE_HLT == true || TempVapor == true)
   ReadOwSensor(dsh, ConvHLT_start, Temp_HLT, false);
 #endif
 #endif // USE_DS18020
@@ -471,6 +473,20 @@ void Temperature() {
   } else {
     if (Fake_HLT > 16.0)
       Fake_HLT -= (gCurrentTimeInMS - FakeHeatLastInMS) * 0.00000006 * (Fake_HLT - 16.0);
+  }
+  Temp_HLT = (int(Fake_HLT * 16)) / 16.0;
+#endif
+
+#if TempVapor == true
+  /* Follow the main temperature */
+  if (Fake_HLT < Fake_MLT) {
+    Fake_HLT += (gCurrentTimeInMS - FakeHeatLastInMS) * 0.000025;
+    if (Fake_HLT > Fake_MLT)
+      Fake_HLT = Fake_MLT;
+  } else if (Fake_HLT > Fake_MLT) {
+    Fake_HLT -= (gCurrentTimeInMS - FakeHeatLastInMS) * 0.000005;
+    if (Fake_HLT < Fake_MLT)
+      Fake_HLT = Fake_MLT;
   }
   Temp_HLT = (int(Fake_HLT * 16)) / 16.0;
 #endif
@@ -752,6 +768,16 @@ void DisplayValues(boolean PWM, boolean Timer, boolean HLTtemp, boolean HLTset) 
       Prompt(X11Y2_setpoint);
     }
   }
+#elif TempVapor == true
+  (PWM) ? Prompt(X11Y2_pwm) : Prompt(X11Y2_blank);
+  if (Timer) {
+    if ((TimeSpent % 10) < 5)
+      Prompt(X1Y2_temp);
+    else
+      Prompt(X1Y2_timer);
+  } else {
+    Prompt(X1Y2_temp);
+  }
 #else // USE_HLT
   (PWM) ? Prompt(X11Y2_pwm) : Prompt(X11Y2_blank);
   (Timer) ? Prompt(X1Y2_timer) : Prompt(X1Y2_blank);
@@ -859,6 +885,9 @@ void distilling_mode() {
 
 #if FakeHeating == true
   Fake_MLT = 60.1;
+#if TempVapor == true
+  Fake_HLT = 60.1;
+#endif
 #endif
 
   while (true) {
@@ -867,7 +896,11 @@ void distilling_mode() {
     Setpoint = mset_temp;
     Input = Temp_MLT;
     (mheat) ? PID_Heat(false) : bk_heat_hide();
+#if TempVapor == true
+    DisplayValues(mheat, mtempReached, true, false);
+#else
     DisplayValues(mheat, mtempReached, false, false);
+#endif
 
     switch (distillerMenu) {
 
@@ -1987,7 +2020,7 @@ void loop() {
 
       Prompt(P0_banner);
       Prompt(X6Y1_temp);
-#if USE_HLT == true
+#if (USE_HLT == true || TempVapor == true)
       Prompt(X6Y2_temp);
 #else
       Prompt(P2_clear);
@@ -2041,9 +2074,12 @@ void loop() {
 #endif
       if (button == buttonUp)
         mainMenu = 4;
+#else
+#if TempVapor == true
+#error "TempVapor defined without Distilling"
+#endif
 #endif
       break;
   }
 
 }
-

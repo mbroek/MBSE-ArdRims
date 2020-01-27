@@ -1,7 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define  VERSION        "0.2.7"
+#define  VERSION        "0.2.8"
 
 /*
    EEPROM MAP
@@ -219,4 +219,3 @@ byte Language[8]     = {B11111, B00100, B01000, B11111, B00000, B10001, B10101, 
 #endif
 
 #endif
-

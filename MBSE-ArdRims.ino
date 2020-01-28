@@ -30,6 +30,8 @@
 /*
    Distilling activates code to control distillation with a GF.
    TempVapor is a second temperature sensor with only a display function.
+   Distilling activeert code om te distilleren met een GF.
+   TempVapor is een tweede damp temperatuur sensor die alleen temperatuur laat zien.
 */
 #define Distilling      false       // Distillation
 #define TempVapor       false       // Vapor temperature display
@@ -52,7 +54,7 @@
 #define DebugButton     false
 #define DebugBuzzer     false
 #define DebugReadWrite  false
-#define DebugErrors     true
+#define DebugErrors     false
 
 
 // Default language is English, others must be set.
@@ -770,19 +772,22 @@ void DisplayValues(boolean PWM, boolean Timer, boolean HLTtemp, boolean HLTset) 
   }
 #elif TempVapor == true
   (PWM) ? Prompt(X11Y2_pwm) : Prompt(X11Y2_blank);
-  if (Timer) {
-    if ((TimeSpent % 10) < 5)
+  if (HLTtemp) {
+    if (Timer) {
+      if ((TimeSpent % 10) < 5)
+        Prompt(X1Y2_temp);
+      else
+        Prompt(X1Y2_timer);
+    } else {
       Prompt(X1Y2_temp);
-    else
-      Prompt(X1Y2_timer);
+    }
   } else {
-    Prompt(X1Y2_temp);
+    (Timer) ? Prompt(X1Y2_timer) : Prompt(X1Y2_blank);
   }
 #else // USE_HLT
   (PWM) ? Prompt(X11Y2_pwm) : Prompt(X11Y2_blank);
   (Timer) ? Prompt(X1Y2_timer) : Prompt(X1Y2_blank);
 #endif // USE_HLT
-
 }
 
 
@@ -1673,7 +1678,12 @@ startover:
 #endif
         Prompt(P0_stage);
         Setpoint = stageTemp;
+#if TempVapor
+        // If the second DS18B20 is plugged in, show the temperature.
+        DisplayValues(false, false, Temp_HLT != 0.0, false);
+#else
         DisplayValues(false, false, false, false);
+#endif
         if (Temp_MLT < _EM_PumpMaxTemp)
           Prompt(P3_UDPQ);
         else
